@@ -45,7 +45,7 @@ export default function App() {
         transition
         fillColor='orange'
         emptyColor='gray'
-        className='foo'
+        className='foo' // Will remove the inline style if applied
       />
       {/* Use rating value */}
       {rating}

@@ -5,7 +5,7 @@ import Rating from 'react-simple-star-rating'
 const App = () => {
   const [rating, setRating] = useState<number>(0)
   const handleRating = (rate: number) => setRating(rate)
-  return <Rating onClick={handleRating} ratingValue={rating} transition />
+  return <Rating onClick={handleRating} ratingValue={rating} transition className='foo' />
 }
 
 export default App

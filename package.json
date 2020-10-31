@@ -1,6 +1,6 @@
 {
   "name": "react-simple-star-rating",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "private": false,
   "description": "A simple react component for adding a star rating to your project.",
   "author": "awran5 <awran5@yahoo.com>",

@@ -2,10 +2,11 @@ import * as React from 'react'
 
 interface StarIconProps {
   value: null | number
-  transition: boolean | undefined
+  transition: boolean
   index: number
-  fill: string | undefined
-  empty: string | undefined
+  fill: string
+  empty: string
+  [props: string]: React.ReactNode
 }
 
 const StarIcon: React.FC<StarIconProps> = ({
@@ -18,11 +19,8 @@ const StarIcon: React.FC<StarIconProps> = ({
 }) => {
   return (
     <svg
-      x='0px'
-      y='0px'
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 64 64'
-      enableBackground='new 0 0 64 64'
       style={transition ? { transition: 'fill .2s ease-in-out 0s' } : {}}
       fill={value && value > index ? fill : empty}
       {...props}

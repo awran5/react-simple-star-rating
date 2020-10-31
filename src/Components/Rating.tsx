@@ -46,12 +46,14 @@ const Rating: React.FC<RatingProps> = ({
             index={index}
             fill={fillColor}
             empty={emptyColor}
+            width={size}
+            height={size}
           />
         </span>
       ))}
       {label && (
         <span
-          className={`${className}-label`}
+          className={className ? `${className}-label` : ''}
           style={
             className
               ? {}
