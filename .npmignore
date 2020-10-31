@@ -1,0 +1,7 @@
+src
+example
+.eslintignore
+.eslintrc
+.prettierrc
+tsconfig.json
+rollup.*
