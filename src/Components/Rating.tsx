@@ -6,6 +6,7 @@ interface RatingProps {
   ratingValue: number | null
   stars?: number | undefined
   size?: number | undefined
+  editable: boolean | undefined
   transition?: boolean | undefined
   fillColor?: string | undefined
   emptyColor?: string | undefined
@@ -18,6 +19,7 @@ const Rating: React.FC<RatingProps> = ({
   ratingValue = null,
   stars = 5,
   size = 25,
+  editable = true,
   transition = false,
   fillColor = '#f1a545',
   emptyColor = '#cccccc',
@@ -36,9 +38,9 @@ const Rating: React.FC<RatingProps> = ({
             width: size,
             height: size
           }}
-          onMouseEnter={() => setHoverValue(index + 1)}
-          onMouseLeave={() => setHoverValue(null)}
-          onClick={() => onClick(index + 1)}
+          onMouseEnter={() => editable && setHoverValue(index + 1)}
+          onMouseLeave={() => editable && setHoverValue(null)}
+          onClick={() => editable && onClick(index + 1)}
         >
           <StarIcon
             value={hoverValue || ratingValue}

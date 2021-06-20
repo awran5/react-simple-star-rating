@@ -62,6 +62,7 @@ export default function App() {
 | `ratingValue` | Integer  | Required | Rating value passed from the component              |    `-`    |
 | `stars`       | Integer  | Optional | Number of the stars                                 |    `5`    |
 | `size`        | integer  | Optional | Stars size in `px`                                  |    25     |
+| `editable`    | Boolean  | Optional | Component is editable                               |   true    |
 | `label`       | Boolean  | Optional | Show the value next to the starts `true` if present |   false   |
 | `transition`  | Integer  | Optional | Adds a hover transition effect `true` if present    |   false   |
 | `fillColor`   | String   | Optional | Full stars color                                    | `#f1a545` |
