@@ -97,7 +97,7 @@ export default function MyComponent() {
 
 | Prop          | Type      | Options  | Description                                       |  Default  |
 | ------------- | --------- | -------- | ------------------------------------------------- | :-------: |
-| `ratingValue` | Number    | Required | Rating value passed from the component            |    `-`    |
+| `ratingValue` | Number    | Required | Rating value that you\'ll need to define          |    `-`    |
 | `stars`       | Number    | Optional | Number of the stars                               |    `5`    |
 | `size`        | Number    | Optional | Stars size in `px` Applied to `with` and `height` |    25     |
 | `fillColor`   | String    | Optional | Full stars color                                  | `#f1a545` |
