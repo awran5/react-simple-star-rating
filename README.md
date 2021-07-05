@@ -133,7 +133,10 @@ export default function MyComponent() {
 }
 ```
 
-### [sandbox](https://codesandbox.io/s/react-simple-star-rating-ts-fzmpu)
+---
+
+
+[![Edit react-simple-rating-ts](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-simple-rating-ts-fzmpu?fontsize=14&hidenavigation=1&theme=dark)
 
 ### License
 
