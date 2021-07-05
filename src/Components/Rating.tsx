@@ -1,76 +1,49 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import StarIcon from './StarIcon'
+import { RatingProps } from './RatingView'
 
-interface RatingProps {
+interface EditableRatingProps extends RatingProps {
   onClick: (index: number) => void
-  ratingValue: number | null
-  stars?: number | undefined
-  size?: number | undefined
-  transition?: boolean | undefined
-  fillColor?: string | undefined
-  emptyColor?: string | undefined
-  label?: boolean | undefined
-  className?: string | undefined
+  transition?: boolean
 }
 
-const Rating: React.FC<RatingProps> = ({
+export function Rating({
+  ratingValue,
   onClick,
-  ratingValue = null,
   stars = 5,
   size = 25,
   transition = false,
   fillColor = '#f1a545',
   emptyColor = '#cccccc',
-  label = false,
-  className
-}) => {
-  const [hoverValue, setHoverValue] = React.useState<number | null>(ratingValue)
+  className = '',
+  children
+}: EditableRatingProps): JSX.Element {
+  const [hoverValue, setHoverValue] = useState(ratingValue || null)
 
   return (
-    <span style={className ? {} : { display: 'inline-flex', verticalAlign: 'bottom' }} className={className}>
-      {[...Array(stars)].map((_, index: number) => (
+    <span className={className}>
+      {[...Array(stars)].map((_, index) => (
         <span
           key={index}
-          style={{
-            cursor: 'pointer',
-            width: size,
-            height: size
-          }}
           onMouseEnter={() => setHoverValue(index + 1)}
           onMouseLeave={() => setHoverValue(null)}
-          onClick={() => onClick(index + 1)}
+          onClick={() => onClick && onClick(index + 1)}
+          aria-hidden='true'
+          style={{
+            color:
+              (hoverValue || ratingValue) && (hoverValue || ratingValue) > index
+                ? fillColor
+                : emptyColor,
+            width: size,
+            height: size,
+            cursor: 'pointer',
+            transition: transition ? 'color 0.2s ease-in-out 0s' : '',
+            display: 'inline-flex'
+          }}
         >
-          <StarIcon
-            value={hoverValue || ratingValue}
-            transition={transition}
-            index={index}
-            fill={fillColor}
-            empty={emptyColor}
-            width={size}
-            height={size}
-          />
+          {children || <StarIcon size={size} />}
         </span>
       ))}
-      {label && (
-        <span
-          className={className ? `${className}-label` : ''}
-          style={
-            className
-              ? {}
-              : {
-                  width: size,
-                  height: size,
-                  fontSize: size,
-                  lineHeight: `${size}px`,
-                  textAlign: 'center'
-                }
-          }
-        >
-          {hoverValue || ratingValue}
-        </span>
-      )}
     </span>
   )
 }
-
-export default Rating

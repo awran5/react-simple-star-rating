@@ -3,3 +3,4 @@ node_modules/
 example/node_modules/
 example/build/
 *.min.js
+*.config.js

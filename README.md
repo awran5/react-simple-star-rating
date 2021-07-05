@@ -12,21 +12,40 @@
 
 ## Install
 
-```bash
-# npm
-npm i react-simple-star-rating
+#### npm
 
-# Yarn
+```sh
+npm i react-simple-star-rating
+```
+
+#### Yarn
+
+```sh
 yarn add react-simple-star-rating
 ```
+
+## Breaking Changes in v2
+
+- Named Imports.
+- removed css stylesheet.
 
 ## Usage
 
 ```jsx
-import React, { useState } from 'react'
-import Rating from 'react-simple-star-rating'
+import { Rating, RatingView } from 'react-simple-star-rating'
+```
 
-export default function App() {
+`Rating` component is used to set and control the rating value while `RatingView` is used as a **view** only
+
+<br />
+
+## 1. Rating Component Example
+
+```jsx
+import React, { useState } from 'react'
+import { Rating } from 'react-simple-star-rating'
+
+export default function MyComponent() {
   const [rating, setRating] = useState(0) // initial rating value
 
   // Catch Rating value
@@ -37,36 +56,77 @@ export default function App() {
 
   return (
     <div className='App'>
-      <Rating
-        onClick={handleRating}
-        ratingValue={rating}
-        size={20}
-        label
-        transition
-        fillColor='orange'
-        emptyColor='gray'
-        className='foo' // Will remove the inline style if applied
-      />
-      {/* Use rating value */}
-      {rating}
+      <Rating onClick={handleRating} ratingValue={rating} /* Rating Props */ />
     </div>
   )
 }
 ```
 
-### Available Props
+### Rating Props
 
-| Prop          | Type     | Options  | Description                                         |  Default  |
-| ------------- | -------- | -------- | --------------------------------------------------- | :-------: |
-| `onClick`     | Function | Required | Handles the returned rating value                   |    `-`    |
-| `ratingValue` | Integer  | Required | Rating value passed from the component              |    `-`    |
-| `stars`       | Integer  | Optional | Number of the stars                                 |    `5`    |
-| `size`        | integer  | Optional | Stars size in `px`                                  |    25     |
-| `label`       | Boolean  | Optional | Show the value next to the starts `true` if present |   false   |
-| `transition`  | Integer  | Optional | Adds a hover transition effect `true` if present    |   false   |
-| `fillColor`   | String   | Optional | Full stars color                                    | `#f1a545` |
-| `emptyColor`  | String   | Optional | Empty stars color                                   | `#cccccc` |
-| `className`   | String   | Optional | if applied, it will **Remove** the inline style     |     -     |
+| Prop          | Type      | Options  | Description                                         |  Default  |
+| ------------- | --------- | -------- | --------------------------------------------------- | :-------: |
+| `onClick`     | Function  | Required | Handles the returned rating value                   |    `-`    |
+| `ratingValue` | Number    | Required | Rating value passed from the Rating component       |    `-`    |
+| `stars`       | Number    | Optional | Number of the stars                                 |    `5`    |
+| `size`        | Number    | Optional | Stars size in (applied to `with` and `height`) `px` |    25     |
+| `transition`  | Number    | Optional | Adds ش transition effect when mouse hover           |   false   |
+| `fillColor`   | String    | Optional | Full stars color                                    | `#f1a545` |
+| `emptyColor`  | String    | Optional | Empty stars color                                   | `#cccccc` |
+| `className`   | String    | Optional | Applied to the main `span`                          |     -     |
+| `children`    | ReactNode | Optional | Allow you to use your own `SVG`.                    |     -     |
+
+---
+
+## 2. RatingView Component Example
+
+```jsx
+import React, { useState } from 'react'
+import { RatingView } from 'react-simple-star-rating'
+
+export default function MyComponent() {
+  return (
+    <div className='App'>
+      <RatingView ratingValue={2} /* RatingView Props */ />
+    </div>
+  )
+}
+```
+
+### Rating Component Props
+
+| Prop          | Type      | Options  | Description                                       |  Default  |
+| ------------- | --------- | -------- | ------------------------------------------------- | :-------: |
+| `ratingValue` | Number    | Required | Rating value passed from the component            |    `-`    |
+| `stars`       | Number    | Optional | Number of the stars                               |    `5`    |
+| `size`        | Number    | Optional | Stars size in `px` Applied to `with` and `height` |    25     |
+| `fillColor`   | String    | Optional | Full stars color                                  | `#f1a545` |
+| `emptyColor`  | String    | Optional | Empty stars color                                 | `#cccccc` |
+| `className`   | String    | Optional | Applied to the main `span`                        |     -     |
+| `children`    | ReactNode | Optional | Allow you to use your own `SVG`.                  |     -     |
+
+---
+
+## Custom SVG
+
+You can use your own `SVG` as a component `children` but you need to define the `fill` attribute and/or `width`, `height` attributes.
+
+```jsx
+import React, { useState } from 'react'
+import { RatingView } from 'react-simple-star-rating'
+
+export default function MyComponent() {
+  return (
+    <div className='App'>
+      <RatingView ratingValue={2}>
+        <svg fill='currentColoe' width='25' height='25' viewBox='0 0 24 24'>
+          <path d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' />
+        </svg>
+      </RatingView>
+    </div>
+  )
+}
+```
 
 ### [sandbox](https://codesandbox.io/s/react-simple-star-rating-ts-fzmpu)
 

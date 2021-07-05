@@ -1,24 +1,28 @@
 {
-  "name": "react-simple-star-rating-example",
-  "homepage": ".",
-  "version": "0.0.0",
+  "name": "example",
+  "version": "0.1.0",
   "private": true,
+  "alias": {
+    "react": "../node_modules/react",
+    "react-dom": "../node_modules/react-dom",
+    "react-scripts": "../node_modules/react-scripts"
+  },
+  "dependencies": {
+    "react-simple-star-rating": "link:.."
+  },
+  "devDependencies": {
+    "@types/react": "../node_modules/@types/react",
+    "@types/react-dom": "../node_modules/@types/react-dom",
+    "typescript": "../node_modules/typescript"
+  },
   "scripts": {
     "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
     "build": "node ../node_modules/react-scripts/bin/react-scripts.js build"
   },
-  "dependencies": {
-    "@types/node": "link:../node_modules/@types/node",
-    "@types/react": "link:../node_modules/@types/react",
-    "@types/react-dom": "link:../node_modules/@types/react-dom",
-    "react": "link:../node_modules/react",
-    "react-dom": "link:../node_modules/react-dom",
-    "react-scripts": "link:../node_modules/react-scripts",
-    "react-simple-star-rating": "link:..",
-    "typescript": "link:../node_modules/typescript"
-  },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app"
+    ]
   },
   "browserslist": {
     "production": [
@@ -31,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "author": "awran5",
+  "license": "ISC"
 }

@@ -5,46 +5,56 @@
   "description": "A simple react component for adding a star rating to your project.",
   "author": "awran5 <awran5@yahoo.com>",
   "license": "MIT",
-  "repository": "https://github.com/awran5/react-simple-star-rating",
-  "bugs": "https://github.com/awran5/react-simple-star-rating/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awran5/react-simple-star-rating.git"
+  },
+  "bugs": {
+    "url": "https://github.com/awran5/react-simple-star-rating/issues"
+  },
   "homepage": "https://github.com/awran5/react-simple-star-rating#readme",
   "main": "dist/index.js",
   "source": "src/index.tsx",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
-    "lint": "eslint \"src/**/*.{js,ts,tsx}\"",
-    "clean": "rimraf dist",
-    "start": "yarn clean && rollup -cw --exports auto",
-    "build": "yarn clean && rollup -c --exports auto"
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "clean": "rm -rf dist",
+    "start": "rollup -cw --exports auto",
+    "build": "yarn clean && rollup -c --exports auto",
+    "predeploy": "cd example && yarn && yarn run build",
+    "release": "changeset publish"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^16.0.0",
-    "@rollup/plugin-image": "^2.0.5",
-    "@rollup/plugin-node-resolve": "^10.0.0",
-    "@rollup/plugin-typescript": "^6.1.0",
-    "@types/react": "^16.9.55",
-    "@types/react-dom": "^16.9.7",
-    "@typescript-eslint/eslint-plugin": "^4.6.0",
-    "@typescript-eslint/parser": "^4.6.0",
-    "cross-env": "^7.0.2",
-    "eslint": "^7.12.1",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.1.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "^4.0.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.32.1",
+    "@changesets/cli": "^2.16.0",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.7",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "rollup": "^2.51.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-terser": "^7.0.2",
-    "tslib": "^2.0.3",
-    "typescript": "^4.0.5"
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.3.2"
   },
   "files": [
     "dist"
@@ -53,10 +63,10 @@
     "access": "public"
   },
   "keywords": [
+    "react",
     "star rating",
-    "react rating",
-    "react rating component",
-    "react component"
+    "react component",
+    "react rating"
   ],
   "tags": [
     "react",
@@ -64,5 +74,8 @@
     "react-component",
     "react-rating"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "directories": {
+    "example": "example"
+  }
 }

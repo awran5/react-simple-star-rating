@@ -1,2 +1,4 @@
-import Rating from './Components/Rating'
-export default Rating
+import { Rating } from './Components/Rating'
+import { RatingView } from './Components/RatingView'
+
+export { Rating, RatingView }

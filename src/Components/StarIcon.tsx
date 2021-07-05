@@ -1,33 +1,13 @@
-import * as React from 'react'
+import React from 'react'
 
 interface StarIconProps {
-  value: null | number
-  transition: boolean
-  index: number
-  fill: string
-  empty: string
-  [props: string]: React.ReactNode
+  size: number
 }
 
-const StarIcon: React.FC<StarIconProps> = ({
-  value = null,
-  transition = false,
-  index = 0,
-  fill = '#f1a545',
-  empty = '#cccccc',
-  ...props
-}) => {
+export default function StarIcon({ size = 25 }: StarIconProps): JSX.Element {
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 64 64'
-      style={transition ? { transition: 'fill .2s ease-in-out 0s' } : {}}
-      fill={value && value > index ? fill : empty}
-      {...props}
-    >
-      <path d='M63.389 24.951L41.7 21.8 32 2.146 22.3 21.8.611 24.951l15.693 15.3L12.6 61.854 32 51.653l19.4 10.201-3.704-21.603z' />
+    <svg fill='currentColor' width={size} height={size} viewBox='0 0 24 24'>
+      <path d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' />
     </svg>
   )
 }
-
-export default StarIcon
