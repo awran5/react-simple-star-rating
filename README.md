@@ -109,7 +109,7 @@ export default function MyComponent() {
 
 ## Custom SVG
 
-You can use your own `SVG` as a component `children` but you need to define the `fill` attribute and/or `width`, `height` attributes.
+You can use your own `SVG` as a component `children` but you need to define the `fill` attribute and set it to `currentColoe` and you may also need to set `width`, `height` attributes.
 
 ```jsx
 import React, { useState } from 'react'
