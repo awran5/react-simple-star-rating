@@ -109,7 +109,7 @@ export default function MyComponent() {
 
 ## Custom SVG
 
-You can use your own `SVG` as a component `children` but you need to define the `fill` attribute and set it to `currentColor` and you may also need to set `width`, `height` attributes.
+You can use your own `SVG` as a component `children` with both `Rating` and `RatingView` Components, Please note that you'll need to define the `fill` attribute and set it to `currentColor` and you may also need to set `width`, `height` attributes if needed.
 
 ```jsx
 import React, { useState } from 'react'
