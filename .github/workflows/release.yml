@@ -1,35 +1,40 @@
-name: Release
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  release:
-    name: Release
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-        with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-      - name: Setup Node.js 12.x
-        uses: actions/setup-node@master
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: ${{ matrix.node }}
 
-      - name: Install Dependencies
-        run: yarn
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@master
-        with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn release
+      - name: Build
+        run: yarn build
+
+      - name: Release
+        run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
