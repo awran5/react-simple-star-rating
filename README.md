@@ -70,7 +70,7 @@ export default function MyComponent() {
 | `ratingValue` | Number    | Required | Rating value passed from the Rating component       |    `-`    |
 | `stars`       | Number    | Optional | Number of the stars                                 |    `5`    |
 | `size`        | Number    | Optional | Stars size in (applied to `with` and `height`) `px` |    25     |
-| `transition`  | Number    | Optional | Adds ش transition effect when mouse hover           |   false   |
+| `transition`  | Number    | Optional | Adds a transition effect when mouse hover           |   false   |
 | `fillColor`   | String    | Optional | Full stars color                                    | `#f1a545` |
 | `emptyColor`  | String    | Optional | Empty stars color                                   | `#cccccc` |
 | `className`   | String    | Optional | Applied to the main `span`                          |     -     |
