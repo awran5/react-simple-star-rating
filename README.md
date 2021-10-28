@@ -64,17 +64,18 @@ export default function MyComponent() {
 
 ### Rating Props
 
-| Prop          | Type      | Options  | Description                                         |  Default  |
-| ------------- | --------- | -------- | --------------------------------------------------- | :-------: |
-| `onClick`     | Function  | Required | Handles the returned rating value                   |    `-`    |
-| `ratingValue` | Number    | Required | Rating value passed from the Rating component       |    `-`    |
-| `stars`       | Number    | Optional | Number of the stars                                 |    `5`    |
-| `size`        | Number    | Optional | Stars size in (applied to `with` and `height`) `px` |    25     |
-| `transition`  | Number    | Optional | Adds a transition effect when mouse hover           |   false   |
-| `fillColor`   | String    | Optional | Full stars color                                    | `#f1a545` |
-| `emptyColor`  | String    | Optional | Empty stars color                                   | `#cccccc` |
-| `className`   | String    | Optional | Applied to the main `span`                          |     -     |
-| `children`    | ReactNode | Optional | Allow you to use your own `SVG`.                    |     -     |
+| Prop              | Type      | Options  | Description                                         |  Default  |
+| -------------     | --------- | -------- | --------------------------------------------------- | :-------: |
+| `onClick`         | Function  | Required | Handles the returned rating value                   |    `-`    |
+| `ratingValue`     | Number    | Required | Rating value passed from the Rating component       |    `-`    |
+| `stars`           | Number    | Optional | Number of the stars                                 |    `5`    |
+| `size`            | Number    | Optional | Stars size in (applied to `with` and `height`) `px` |    25     |
+| `transition`      | Number    | Optional | Adds a transition effect when mouse hover           |   false   |
+| `fillColor`       | String    | Optional | Full stars color                                    | `#f1a545` |
+| `emptyColor`      | String    | Optional | Empty stars color                                   | `#cccccc` |
+| `className`       | String    | Optional | Applied to the main `span`                          |     -     |
+| `filledClassName` | String    | Optional | Applied to the child `span` of filled stars         |     -     |
+| `children`        | ReactNode | Optional | Allow you to use your own `SVG`.                    |     -     |
 
 ---
 

@@ -8,6 +8,7 @@ export interface RatingProps {
   fillColor?: string
   emptyColor?: string
   className?: string
+  filledClassName?: string
   children?: React.ReactNode
 }
 export function RatingView({
@@ -17,23 +18,29 @@ export function RatingView({
   fillColor = '#f1a545',
   emptyColor = '#cccccc',
   className = '',
+  filledClassName = '',
   children
 }: RatingProps): JSX.Element {
   return (
     <span className={className}>
-      {[...Array(stars)].map((_, index) => (
-        <span
-          key={index}
-          style={{
-            color: ratingValue && ratingValue > index ? fillColor : emptyColor,
-            width: size,
-            height: size,
-            display: 'inline-flex'
-          }}
-        >
-          {children || <StarIcon size={size} />}
-        </span>
-      ))}
+      {[...Array(stars)].map((_, index) => {
+        const isFilled = ratingValue && ratingValue > index
+
+        return (
+          <span
+            key={index}
+            className={isFilled ? filledClassName : ''}
+            style={{
+              color: isFilled ? fillColor : emptyColor,
+              width: size,
+              height: size,
+              display: 'inline-flex'
+            }}
+          >
+            {children || <StarIcon size={size} />}
+          </span>
+        )
+      })}
     </span>
   )
 }

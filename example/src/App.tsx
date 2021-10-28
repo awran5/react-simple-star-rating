@@ -17,6 +17,7 @@ function App() {
         className='om'
         size={40}
         stars={10}
+        filledClassName="filled-star"
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
