@@ -1,35 +1,787 @@
 import React, { useState } from 'react'
-import { Rating, RatingView } from 'react-simple-star-rating'
+import { CopyBlock, monokaiSublime } from 'react-code-blocks'
+import {
+  MdFavoriteBorder,
+  MdFavorite,
+  MdOutlineSentimentDissatisfied,
+  MdOutlineSentimentNeutral,
+  MdOutlineSentimentSatisfied,
+  MdOutlineSentimentVeryDissatisfied,
+  MdOutlineSentimentVerySatisfied
+} from 'react-icons/md'
+
+import './App.css'
+import { Rating } from 'react-simple-star-rating'
+import { UrlSVG } from './IconsSVG'
+
+const tooltipArray = [
+  'Terrible',
+  'Terrible+',
+  'Bad',
+  'Bad+',
+  'Average',
+  'Average+',
+  'Great',
+  'Great+',
+  'Awesome',
+  'Awesome+'
+]
+const fillColorArray = [
+  '#f17a45',
+  '#f17a45',
+  '#f19745',
+  '#f19745',
+  '#f1a545',
+  '#f1a545',
+  '#f1b345',
+  '#f1b345',
+  '#f1d045',
+  '#f1d045'
+]
+
+const customIcons = [
+  {
+    icon: <MdOutlineSentimentDissatisfied size={50} />
+  },
+  {
+    icon: <MdOutlineSentimentNeutral size={50} />
+  },
+  {
+    icon: <MdOutlineSentimentSatisfied size={50} />
+  },
+  {
+    icon: <MdOutlineSentimentVeryDissatisfied size={50} />
+  },
+  {
+    icon: <MdOutlineSentimentVerySatisfied size={50} />
+  }
+]
 
 function App() {
-  const [rating, setRating] = useState(0)
+  const [rating1, setRating1] = useState(0)
+  const [rating2, setRating2] = useState(0)
+  const [rating3, setRating3] = useState(0)
+  const [rating4, setRating4] = useState(0)
+  const [rating5, setRating5] = useState(0)
+  const [rating6, setRating6] = useState(0)
+  const [rating7, setRating7] = useState(0)
+  const [rating8, setRating8] = useState(0)
+  const [rating9, setRating9] = useState(0)
+  const [rating10, setRating10] = useState(0)
+  const [rating11, setRating11] = useState(0)
 
+  const handleRating1 = (rate: number) => setRating1(rate)
+  const handleRating2 = (rate: number) => setRating2(rate)
+  const handleRating3 = (rate: number) => setRating3(rate)
+  const handleRating4 = (rate: number) => setRating4(rate)
+  const handleRating5 = (rate: number) => setRating5(rate)
+  const handleRating6 = (rate: number) => setRating6(rate)
+  const handleRating7 = (rate: number) => setRating7(rate)
+  const handleRating8 = (rate: number) => setRating8(rate)
+  const handleRating9 = (rate: number) => setRating9(rate)
+  const handleRating10 = (rate: number) => setRating10(rate)
+  const handleRating11 = (rate: number) => setRating11(rate)
+
+  // console.log(customIcons)
+
+  return (
+    <div className='d-flex flex-column h-100 App'>
+      <main className='flex-shrink-0'>
+        <div className='bg-gredient'>
+          <div className='container col-xxl-8 px-4 py-5'>
+            <div className='row flex-lg-row-reverse align-items-center g-5 py-5'>
+              <div className='col-10 col-sm-8 col-lg-6 mx-auto'>
+                <h1 className='display-5 fw-bold'>React simple star rating</h1>
+
+                <p className='lead mb-4'>
+                  A simple yet powerful react component for adding a nice rating icons to your project.
+                </p>
+                <div className='d-grid gap-2 d-sm-flex justify-content-sm-center'>
+                  <a
+                    role='button'
+                    href='https://github.com/awran5/react-simple-star-rating'
+                    className='btn btn-light px-4'
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    role='button'
+                    href='https://www.npmjs.com/package/react-simple-star-rating'
+                    className='btn btn-outline-light px-4'
+                  >
+                    npm
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className='container px-4 px-md-3 mt-5 pt-5'>
+          <div className='row mb-5 pb-md-4 align-items-center'>
+            <div className='col-md-10 mx-auto'>
+              <div className='box'>
+                <h3>Demo</h3>
+                <div className='demo'>
+                  <Rating
+                    onClick={handleRating1}
+                    ratingValue={rating1}
+                    size={50}
+                    transition
+                    allowHalfIcon
+                    showTooltip
+                    tooltipArray={tooltipArray}
+                    fillColorArray={fillColorArray}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3>Installation</h3>
+                <div className='py-3'>
+                  <small className='text-muted'># npm</small>
+                  <CopyBlock
+                    language='shell'
+                    text={`npm i react-simple-star-rating`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+                <div className='py-3'>
+                  <small className='text-muted'># yarn</small>
+                  <CopyBlock
+                    language='shell'
+                    text={`yarn add react-simple-star-rating`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+                <div className='py-3'>
+                  <div className='preview'>
+                    <CopyBlock
+                      language='tsx'
+                      text={`import React, { useState } from 'react'
+import { Rating } from 'react-simple-star-rating'
+
+function App() {
+  const [ratingValue, setRatingValue] = useState(0)
+  
   const handleRating = (rate: number) => {
-    setRating(rate)
-    console.log(rate)
+    setRatingValue(rate)
   }
   return (
-    <div>
-      <Rating
-        onClick={handleRating}
-        ratingValue={rating}
-        transition
-        className='om'
-        size={40}
-        stars={10}
-      >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          viewBox='0 0 170.96 159.93'
-          fill='currentColor'
-        >
-          <path d='M141.35,73.27c0-6.89-8.11-13-20.58-16.73,3-12.67,1.69-22.75-4.28-26.16a9.55,9.55,0,0,0-4.79-1.2c-5.57,0-12.61,3.89-19.72,10.62-7.11-6.68-14.13-10.55-19.69-10.55a9.46,9.46,0,0,0-4.86,1.22c-5.94,3.42-7.17,13.44-4.21,26.05-12.41,3.71-20.48,9.77-20.5,16.63s8.12,13,20.59,16.72c-3,12.68-1.7,22.75,4.28,26.16a9.41,9.41,0,0,0,4.78,1.2c5.58,0,12.62-3.89,19.73-10.62,7.1,6.68,14.12,10.55,19.69,10.55a9.59,9.59,0,0,0,4.86-1.22c5.94-3.42,7.16-13.44,4.21-26C133.27,86.18,141.34,80.12,141.35,73.27ZM96.56,42.06c8.19-7.33,13.31-8.12,15.13-8.12h0a4.71,4.71,0,0,1,2.42.58c2.86,1.63,4,7.38,3.09,15a56.73,56.73,0,0,1-1,5.79,97.7,97.7,0,0,0-12.58-2.07,98.47,98.47,0,0,0-8.24-10.08C95.75,42.79,96.15,42.42,96.56,42.06ZM71.77,78.94c.78,1.5,1.61,3,2.47,4.51S76,86.49,77,88c-2.71-.39-5.34-.88-7.84-1.46C69.86,84,70.75,81.5,71.77,78.94ZM69,59.9c2.53-.59,5.18-1.08,7.93-1.46-1,1.48-1.86,3-2.76,4.59s-1.69,3-2.46,4.52Q70.18,63.65,69,59.9Zm5.21,13.34q1.86-3.93,4.09-7.86c1.5-2.62,3.11-5.17,4.77-7.61,2.91-.22,5.91-.34,9-.33s6,.12,8.89.35c1.66,2.42,3.25,5,4.75,7.55s2.88,5.22,4.12,7.83c-1.23,2.62-2.6,5.25-4.08,7.85s-3.11,5.18-4.77,7.62c-2.91.23-5.91.34-9,.34s-6-.13-8.89-.36c-1.66-2.42-3.26-4.94-4.76-7.55S75.5,75.85,74.25,73.24Zm32.86-14.77c2.72.38,5.35.87,7.84,1.45-.74,2.47-1.62,5-2.64,7.55-.79-1.5-1.61-3-2.48-4.51S108,59.93,107.11,58.47Zm2.76,24.92q1.29-2.27,2.46-4.53c1,2.6,2,5.16,2.7,7.66-2.52.59-5.17,1.07-7.92,1.45Q108.52,85.75,109.87,83.39ZM92,46.56c1.8,1.92,3.57,4,5.3,6.23-1.71-.07-3.46-.12-5.23-.12s-3.58,0-5.33.12C88.45,50.57,90.2,48.48,92,46.56Zm-22.18-12A4.82,4.82,0,0,1,72.29,34a13.11,13.11,0,0,1,5.19,1.31,39.07,39.07,0,0,1,10,6.78l1.17,1.07a98.49,98.49,0,0,0-8.16,10,98.88,98.88,0,0,0-12.65,2.06c-.44-1.94-.8-3.84-1-5.67C65.8,42,67,36.24,69.81,34.6ZM64.53,85.26a58.75,58.75,0,0,1-5.54-2c-7.1-3-11.5-6.85-11.5-10.14S51.91,66,59,63.05a57.63,57.63,0,0,1,5.44-1.94A97.93,97.93,0,0,0,69,73.25,98.72,98.72,0,0,0,64.53,85.26Zm23,19.1c-8.19,7.33-13.31,8.11-15.14,8.11a4.69,4.69,0,0,1-2.42-.58c-2.86-1.63-4-7.38-3.09-15a56.07,56.07,0,0,1,1-5.78,99.51,99.51,0,0,0,12.58,2.06,97.17,97.17,0,0,0,8.24,10.08Zm4.57-4.51c-1.8-1.92-3.57-4-5.31-6.23,1.72.08,3.47.12,5.24.12s3.58,0,5.33-.11C95.63,95.85,93.87,97.93,92.09,99.85Zm22.18,12a4.82,4.82,0,0,1-2.48.59c-1.82,0-7-.8-15.16-8.1l-1.17-1.07a98.44,98.44,0,0,0,8.15-10,97,97,0,0,0,12.66-2.06c.44,1.94.79,3.84,1,5.67C118.27,104.42,117.12,110.18,114.27,111.81Zm10.8-28.44c-1.71.7-3.52,1.35-5.44,1.93a98.54,98.54,0,0,0-4.57-12.14,98.1,98.1,0,0,0,4.49-12,58.75,58.75,0,0,1,5.54,2c7.09,3,11.5,6.85,11.49,10.14S132.17,80.42,125.07,83.37ZM92,82.39a9.18,9.18,0,1,0-9.17-9.19A9.17,9.17,0,0,0,92,82.39ZM31,17.88V128.53H153.07V17.88ZM148.3,123.77H35.78V22.65H148.3Zm-85-33.9c-3,12.68-1.7,22.75,4.28,26.16a9.41,9.41,0,0,0,4.78,1.2c5.58,0,12.62-3.89,19.73-10.62,7.1,6.68,14.12,10.55,19.69,10.55a9.59,9.59,0,0,0,4.86-1.22c5.94-3.42,7.16-13.44,4.21-26,12.41-3.72,20.48-9.78,20.49-16.63s-8.11-13-20.58-16.73c3-12.67,1.69-22.75-4.28-26.16a9.55,9.55,0,0,0-4.79-1.2c-5.57,0-12.61,3.89-19.72,10.62-7.11-6.68-14.13-10.55-19.69-10.55a9.46,9.46,0,0,0-4.86,1.22c-5.94,3.42-7.17,13.44-4.21,26.05-12.41,3.71-20.48,9.77-20.5,16.63S50.84,86.13,63.31,89.87Zm24.21,14.49c-8.19,7.33-13.31,8.11-15.14,8.11a4.69,4.69,0,0,1-2.42-.58c-2.86-1.63-4-7.38-3.09-15a56.07,56.07,0,0,1,1-5.78,99.51,99.51,0,0,0,12.58,2.06,97.17,97.17,0,0,0,8.24,10.08Zm24.79-36.89c-.79-1.5-1.61-3-2.48-4.51s-1.8-3-2.72-4.49c2.72.38,5.35.87,7.84,1.45C114.21,62.39,113.33,64.92,112.31,67.47Zm2.72,19c-2.52.59-5.17,1.07-7.92,1.45q1.41-2.22,2.76-4.58t2.46-4.53C113.37,81.46,114.28,84,115,86.52Zm-5.21-13.35c-1.23,2.62-2.6,5.25-4.08,7.85s-3.11,5.18-4.77,7.62c-2.91.23-5.91.34-9,.34s-6-.13-8.89-.36c-1.66-2.42-3.26-4.94-4.76-7.55s-2.87-5.22-4.12-7.83q1.86-3.93,4.09-7.86c1.5-2.62,3.11-5.17,4.77-7.61,2.91-.22,5.91-.34,9-.33s6,.12,8.89.35c1.66,2.42,3.25,5,4.75,7.55S108.58,70.56,109.82,73.17ZM77,88c-2.71-.39-5.34-.88-7.84-1.46.74-2.46,1.63-5,2.65-7.55.78,1.5,1.61,3,2.47,4.51S76,86.49,77,88ZM74.21,63c-.87,1.5-1.69,3-2.46,4.52Q70.18,63.65,69,59.9c2.53-.59,5.18-1.08,7.93-1.46C76,59.92,75.11,61.45,74.21,63ZM92.09,99.85c-1.8-1.92-3.57-4-5.31-6.23,1.72.08,3.47.12,5.24.12s3.58,0,5.33-.11C95.63,95.85,93.87,97.93,92.09,99.85Zm22.18,12a4.82,4.82,0,0,1-2.48.59c-1.82,0-7-.8-15.16-8.1l-1.17-1.07a98.44,98.44,0,0,0,8.15-10,97,97,0,0,0,12.66-2.06c.44,1.94.79,3.84,1,5.67C118.27,104.42,117.12,110.18,114.27,111.81Zm5.28-50.66a58.75,58.75,0,0,1,5.54,2c7.09,3,11.5,6.85,11.49,10.14s-4.41,7.16-11.51,10.11c-1.71.7-3.52,1.35-5.44,1.93a98.54,98.54,0,0,0-4.57-12.14A98.1,98.1,0,0,0,119.55,61.15Zm-23-19.09c8.19-7.33,13.31-8.12,15.13-8.12h0a4.71,4.71,0,0,1,2.42.58c2.86,1.63,4,7.38,3.09,15a56.73,56.73,0,0,1-1,5.79,97.7,97.7,0,0,0-12.58-2.07,98.47,98.47,0,0,0-8.24-10.08C95.75,42.79,96.15,42.42,96.56,42.06ZM92,46.56c1.8,1.92,3.57,4,5.3,6.23-1.71-.07-3.46-.12-5.23-.12s-3.58,0-5.33.12C88.45,50.57,90.2,48.48,92,46.56Zm-22.18-12A4.82,4.82,0,0,1,72.29,34a13.11,13.11,0,0,1,5.19,1.31,39.07,39.07,0,0,1,10,6.78l1.17,1.07a98.49,98.49,0,0,0-8.16,10,98.88,98.88,0,0,0-12.65,2.06c-.44-1.94-.8-3.84-1-5.67C65.8,42,67,36.24,69.81,34.6ZM59,63.05a57.63,57.63,0,0,1,5.44-1.94A97.93,97.93,0,0,0,69,73.25a98.72,98.72,0,0,0-4.49,12,58.75,58.75,0,0,1-5.54-2c-7.1-3-11.5-6.85-11.5-10.14S51.91,66,59,63.05Zm33,1a9.18,9.18,0,1,0,9.17,9.19A9.17,9.17,0,0,0,92,64Zm0,0a9.18,9.18,0,1,0,9.17,9.19A9.17,9.17,0,0,0,92,64Zm0,0a9.18,9.18,0,1,0,9.17,9.19A9.17,9.17,0,0,0,92,64Zm49.35,9.24c0-6.89-8.11-13-20.58-16.73,3-12.67,1.69-22.75-4.28-26.16a9.55,9.55,0,0,0-4.79-1.2c-5.57,0-12.61,3.89-19.72,10.62-7.11-6.68-14.13-10.55-19.69-10.55a9.46,9.46,0,0,0-4.86,1.22c-5.94,3.42-7.17,13.44-4.21,26.05-12.41,3.71-20.48,9.77-20.5,16.63s8.12,13,20.59,16.72c-3,12.68-1.7,22.75,4.28,26.16a9.41,9.41,0,0,0,4.78,1.2c5.58,0,12.62-3.89,19.73-10.62,7.1,6.68,14.12,10.55,19.69,10.55a9.59,9.59,0,0,0,4.86-1.22c5.94-3.42,7.16-13.44,4.21-26C133.27,86.18,141.34,80.12,141.35,73.27ZM96.56,42.06c8.19-7.33,13.31-8.12,15.13-8.12h0a4.71,4.71,0,0,1,2.42.58c2.86,1.63,4,7.38,3.09,15a56.73,56.73,0,0,1-1,5.79,97.7,97.7,0,0,0-12.58-2.07,98.47,98.47,0,0,0-8.24-10.08C95.75,42.79,96.15,42.42,96.56,42.06ZM71.77,78.94c.78,1.5,1.61,3,2.47,4.51S76,86.49,77,88c-2.71-.39-5.34-.88-7.84-1.46C69.86,84,70.75,81.5,71.77,78.94ZM69,59.9c2.53-.59,5.18-1.08,7.93-1.46-1,1.48-1.86,3-2.76,4.59s-1.69,3-2.46,4.52Q70.18,63.65,69,59.9Zm5.21,13.34q1.86-3.93,4.09-7.86c1.5-2.62,3.11-5.17,4.77-7.61,2.91-.22,5.91-.34,9-.33s6,.12,8.89.35c1.66,2.42,3.25,5,4.75,7.55s2.88,5.22,4.12,7.83c-1.23,2.62-2.6,5.25-4.08,7.85s-3.11,5.18-4.77,7.62c-2.91.23-5.91.34-9,.34s-6-.13-8.89-.36c-1.66-2.42-3.26-4.94-4.76-7.55S75.5,75.85,74.25,73.24Zm32.86-14.77c2.72.38,5.35.87,7.84,1.45-.74,2.47-1.62,5-2.64,7.55-.79-1.5-1.61-3-2.48-4.51S108,59.93,107.11,58.47Zm2.76,24.92q1.29-2.27,2.46-4.53c1,2.6,2,5.16,2.7,7.66-2.52.59-5.17,1.07-7.92,1.45Q108.52,85.75,109.87,83.39ZM92,46.56c1.8,1.92,3.57,4,5.3,6.23-1.71-.07-3.46-.12-5.23-.12s-3.58,0-5.33.12C88.45,50.57,90.2,48.48,92,46.56Zm-22.18-12A4.82,4.82,0,0,1,72.29,34a13.11,13.11,0,0,1,5.19,1.31,39.07,39.07,0,0,1,10,6.78l1.17,1.07a98.49,98.49,0,0,0-8.16,10,98.88,98.88,0,0,0-12.65,2.06c-.44-1.94-.8-3.84-1-5.67C65.8,42,67,36.24,69.81,34.6ZM64.53,85.26a58.75,58.75,0,0,1-5.54-2c-7.1-3-11.5-6.85-11.5-10.14S51.91,66,59,63.05a57.63,57.63,0,0,1,5.44-1.94A97.93,97.93,0,0,0,69,73.25,98.72,98.72,0,0,0,64.53,85.26Zm23,19.1c-8.19,7.33-13.31,8.11-15.14,8.11a4.69,4.69,0,0,1-2.42-.58c-2.86-1.63-4-7.38-3.09-15a56.07,56.07,0,0,1,1-5.78,99.51,99.51,0,0,0,12.58,2.06,97.17,97.17,0,0,0,8.24,10.08Zm4.57-4.51c-1.8-1.92-3.57-4-5.31-6.23,1.72.08,3.47.12,5.24.12s3.58,0,5.33-.11C95.63,95.85,93.87,97.93,92.09,99.85Zm22.18,12a4.82,4.82,0,0,1-2.48.59c-1.82,0-7-.8-15.16-8.1l-1.17-1.07a98.44,98.44,0,0,0,8.15-10,97,97,0,0,0,12.66-2.06c.44,1.94.79,3.84,1,5.67C118.27,104.42,117.12,110.18,114.27,111.81Zm10.8-28.44c-1.71.7-3.52,1.35-5.44,1.93a98.54,98.54,0,0,0-4.57-12.14,98.1,98.1,0,0,0,4.49-12,58.75,58.75,0,0,1,5.54,2c7.09,3,11.5,6.85,11.49,10.14S132.17,80.42,125.07,83.37ZM92,82.39a9.18,9.18,0,1,0-9.17-9.19A9.17,9.17,0,0,0,92,82.39Zm-69.32,54.5V26.2L17.89,31V141.66H139.94l4.78-4.77Z' />
-        </svg>
-      </Rating>
+    <Rating
+      {/* props */}
+    />
+  )
+`}
+                      codeBlock
+                      theme={monokaiSublime}
+                      showLineNumbers={false}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className='box'>
+                <h3 id='available-props' className='pt-2 pb-4'>
+                  <a href='#available-props'>
+                    <UrlSVG />
+                  </a>
+                  Available Props
+                </h3>
 
-      <hr />
+                <table className='table'>
+                  <thead>
+                    <tr>
+                      <th scope='col'>Prop</th>
+                      <th scope='col'>Options</th>
+                      <th scope='col'>Default</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope='row'>onClick</th>
+                      <td>
+                        <code className='text-primary'>function</code>
+                      </td>
+                      <td>
+                        <code>-</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>ratingValue</th>
+                      <td>
+                        <code className='text-primary'>number</code>
+                      </td>
+                      <td>
+                        <code>-</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>iconsCount</th>
+                      <td>
+                        <code className='text-primary'>number</code>
+                      </td>
+                      <td>
+                        <code>5</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>size</th>
+                      <td>
+                        <code className='text-primary'>number</code>
+                      </td>
+                      <td>
+                        <code>25</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>readonly</th>
+                      <td>
+                        <code className='text-primary'>boolean</code>
+                      </td>
+                      <td>
+                        <code>false</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>fillColor</th>
+                      <td>
+                        <code className='text-primary'>string</code>
+                      </td>
+                      <td>
+                        <code>#f1a545</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>fillColorArray</th>
+                      <td>
+                        <code className='text-primary'>string[]</code>
+                      </td>
+                      <td>
+                        <code>[]</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>emptyColor</th>
+                      <td>
+                        <code className='text-primary'>string</code>
+                      </td>
+                      <td>
+                        <code>#cccccc</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>fullIcon</th>
+                      <td>
+                        <code className='text-primary'>React.ReactElement</code>
+                      </td>
+                      <td>
+                        <code>null</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>emptyIcon</th>
+                      <td>
+                        <code className='text-primary'>React.ReactElement</code>
+                      </td>
+                      <td>
+                        <code>null</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>customIcons</th>
+                      <td>
+                        <code className='text-primary'>{`[ { icon: React.ReactElement } ]`}</code>
+                      </td>
+                      <td>
+                        <code>[]</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>rtl</th>
+                      <td>
+                        <code className='text-primary'>boolean</code>
+                      </td>
+                      <td>
+                        <code>false</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>allowHalfIcon</th>
+                      <td>
+                        <code className='text-primary'>boolean</code>
+                      </td>
+                      <td>
+                        <code>false</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>allowHover</th>
+                      <td>
+                        <code className='text-primary'>boolean</code>
+                      </td>
+                      <td>
+                        <code>true</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>transition</th>
+                      <td>
+                        <code className='text-primary'>boolean</code>
+                      </td>
+                      <td>
+                        <code>false</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>className</th>
+                      <td>
+                        <code className='text-primary'>string</code>
+                      </td>
+                      <td>
+                        <code>react-simple-star-rating</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>style</th>
+                      <td>
+                        <code className='text-primary'>React.CSSProperties</code>
+                      </td>
+                      <td>
+                        <code>-</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>fullClassName</th>
+                      <td>
+                        <code className='text-primary'>string</code>
+                      </td>
+                      <td>
+                        <code>filled-icons</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>emptyClassName</th>
+                      <td>
+                        <code className='text-primary'>string</code>
+                      </td>
+                      <td>
+                        <code>empty-icons</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>fullStyle</th>
+                      <td>
+                        <code className='text-primary'>React.CSSProperties</code>
+                      </td>
+                      <td>
+                        <code>-</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>emptyStyle</th>
+                      <td>
+                        <code className='text-primary'>React.CSSProperties</code>
+                      </td>
+                      <td>
+                        <code>-</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>showTooltip</th>
+                      <td>
+                        <code className='text-primary'>boolean</code>
+                      </td>
+                      <td>
+                        <code>false</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>tooltipDefaultText</th>
+                      <td>
+                        <code className='text-primary'>string</code>
+                      </td>
+                      <td>
+                        <code>Your Rate</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>tooltipArray</th>
+                      <td>
+                        <code className='text-primary'>string[]</code>
+                      </td>
+                      <td>
+                        <code>[]</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>tooltipClassName</th>
+                      <td>
+                        <code className='text-primary'>string</code>
+                      </td>
+                      <td>
+                        <code>rating-tooltip</code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope='row'>tooltipStyle</th>
+                      <td>
+                        <code className='text-primary'>React.CSSProperties</code>
+                      </td>
+                      <td>
+                        <code>-</code>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-      <RatingView ratingValue={3.5} size={50} className='deen' />
+              <div className='box'>
+                <h3 id='transition'>
+                  <a href='#transition'>#2 </a>
+                  Add transition effect on mouse hover
+                </h3>
+                <p>
+                  Using <code>transition</code> prop to add a smooth <code>width</code> and <code>fill</code> transition
+                  on mouse hover.
+                </p>
+                <div className='demo'>
+                  <Rating onClick={handleRating2} ratingValue={rating2} transition size={50} />
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`<Rating
+  transition
+  onClick={onClick}
+  ratingValue={ratingValue}
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='tooltip-value'>
+                  <a href='#tooltip-value'>#3 </a>Live value with tooltip
+                </h3>
+                <p>
+                  Show live value with <code>showTooltip</code> prop.
+                </p>
+
+                <div className='demo'>
+                  <Rating onClick={handleRating3} transition ratingValue={rating3} size={50} showTooltip />
+                </div>
+
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`<Rating
+  showTooltip
+  onClick={onClick}
+  ratingValue={ratingValue}
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='tooltip-array'>
+                  <a href='#tooltip-array'>#4 </a>Custom tooltip text based on value
+                </h3>
+                <p>
+                  By define <code>tooltipArray</code> prop. You can display a label with live value on hover to help the
+                  user pick the correct choice. <br />
+                </p>
+
+                <div className='demo'>
+                  <Rating
+                    onClick={handleRating4}
+                    ratingValue={rating4}
+                    transition
+                    size={50}
+                    showTooltip
+                    tooltipArray={['Terrible', 'Bad', 'Average', 'Great', 'Prefect']}
+                  />
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`<Rating
+  onClick={onClick}
+  ratingValue={ratingValue}
+  showTooltip
+  tooltipArray={['Terrible', 'Bad', 'Average', 'Great', 'Prefect']}
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='color-range'>
+                  <a href='#color-range'>#5 </a>Color Range
+                </h3>
+                <p>
+                  Add a nice color range with <code>fillColorArray</code> prop.
+                </p>
+                <div className='demo'>
+                  <Rating
+                    onClick={handleRating5}
+                    ratingValue={rating5}
+                    transition
+                    size={50}
+                    fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
+                  />
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`<Rating 
+  onClick={onClick}
+  ratingValue={ratingValue}
+  fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']} 
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='readonly'>
+                  <a href='#readonly'>#6 </a>Readonly mode
+                </h3>
+                <p>
+                  Readonly mode. You can set <code>readonly</code> to <b>ture</b> or use it as a condition to completely
+                  disable the component when the condition is met.
+                </p>
+                <div className='demo'>
+                  <Rating onClick={handleRating6} ratingValue={rating6} transition size={50} readonly={rating6 > 0} />
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`<Rating 
+  onClick={onClick}
+  ratingValue={ratingValue}
+  readonly={rating > 0}
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='custom-svgs'>
+                  <a href='#custom-svgs'>#7 </a>Use custom SVG icons
+                </h3>
+                <p>
+                  By adding an SVG with <code>fullIcon</code> | <code>emptyIcon</code> props.
+                </p>
+                <p>
+                  <b>Note:</b> Example below using{' '}
+                  <a href='https://github.com/react-icons/react-icons' className='text-primary'>
+                    react icons
+                  </a>
+                  . If you like to use your own custom SVG, you need to to set the <code>fill</code> attribute to{' '}
+                  <code>currentColor</code>
+                </p>
+                <div className='demo'>
+                  <Rating
+                    onClick={handleRating7}
+                    ratingValue={rating7}
+                    transition
+                    size={50}
+                    fullIcon={<MdFavorite size={50} />}
+                    emptyIcon={<MdFavoriteBorder size={50} />}
+                  ></Rating>
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
+  ...
+
+<Rating 
+  onClick={onClick} 
+  ratingValue={ratingValue} 
+  fullIcon={<MdFavorite size={50} />}
+  emptyIcon={<MdFavoriteBorder size={50} 
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='custom-svgs-group'>
+                  <a href='#custom-svgs-group'>#8 </a>Custom SVG group
+                </h3>
+                <p>
+                  You can add a group of icons with <code>customIcons</code> props.
+                </p>
+                <div className='demo'>
+                  <Rating
+                    onClick={handleRating8}
+                    ratingValue={rating8}
+                    transition
+                    size={50}
+                    customIcons={customIcons}
+                  />
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`import { MdOutlineSentimentDissatisfied,
+  MdOutlineSentimentNeutral,
+  MdOutlineSentimentSatisfied,
+  MdOutlineSentimentVeryDissatisfied,
+  MdOutlineSentimentVerySatisfied
+} from 'react-icons/md'
+
+const customIcons = [
+  { icon: <MdOutlineSentimentDissatisfied size={50} /> },
+  { icon: <MdOutlineSentimentNeutral size={50} /> },
+  { icon: <MdOutlineSentimentSatisfied size={50} /> },
+  { icon: <MdOutlineSentimentVeryDissatisfied size={50} /> },
+  { icon: <MdOutlineSentimentVerySatisfied size={50} /> }
+]
+
+...
+
+<Rating 
+  onClick={onClick} 
+  ratingValue={ratingValue} 
+  customIcons={customIcons}
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='no-hover'>
+                  <a href='#no-hover'>#9 </a>Disable hover on mouse move
+                </h3>
+                <p>
+                  If you like, you can disable hover effect with <code>allowHover</code> prop.
+                </p>
+                <div className='demo'>
+                  <Rating onClick={handleRating9} ratingValue={rating9} allowHover={false} size={50} />
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`<Rating 
+  onClick={onClick}
+  ratingValue={ratingValue}
+  allowHover={false}
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='with-fractional'>
+                  <a href='#with-fractional'>#10 </a>Support fractional rating
+                </h3>
+                <p>
+                  Enable a fractional (half icon) with <code>allowHalfIcon</code> prop.
+                </p>
+                <div className='demo'>
+                  <Rating onClick={handleRating10} ratingValue={rating10} transition size={50} allowHalfIcon />
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`<Rating 
+  onClick={onClick}
+  ratingValue={ratingValue}
+  allowHalfIcon
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='with-rtl'>
+                  <a href='#with-rtl'>#11 </a>RTL Support
+                </h3>
+                <p>
+                  support RTL languages with <code>rtl</code> prop.
+                </p>
+                <div className='demo' style={{ direction: 'rtl' }}>
+                  <Rating
+                    onClick={handleRating11}
+                    ratingValue={rating11}
+                    transition
+                    size={50}
+                    rtl
+                    showTooltip
+                    allowHalfIcon
+                    tooltipArray={tooltipArray}
+                  />
+                </div>
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`<Rating 
+  onClick={onClick}
+  ratingValue={ratingValue}
+  rtl
+/>`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer className='footer mt-auto py-3 bg-light text-center'>
+        <div className='container'>
+          <span className='text-muted'>
+            by <a href='https://github.com/awran5'>awran5 </a> <span className='px-2'>|</span>
+            <a href='https://github.com/awran5/react-simple-star-rating'>Github</a>
+          </span>
+        </div>
+      </footer>
     </div>
   )
 }
