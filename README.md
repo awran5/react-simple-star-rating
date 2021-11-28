@@ -43,10 +43,7 @@ export default function MyComponent() {
 
   return (
     <div className='App'>
-      <Rating
-        onClick={handleRating}
-        ratingValue={rating} /* Available Props */
-      />
+      <Rating onClick={handleRating} ratingValue={rating} /* Available Props */ />
     </div>
   )
 }
