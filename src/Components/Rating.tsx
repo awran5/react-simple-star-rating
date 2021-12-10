@@ -1,6 +1,10 @@
 import React, { useMemo, useReducer, useCallback, Fragment } from 'react'
 import { StarIcon } from './StarIcon'
 
+function isTouchDevice() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0
+}
+
 function calculateCurrentPosition(totalIcons: number, positionX: number, width: number) {
   const singleHalfValue = 100 / totalIcons
   const iconWidth = width / totalIcons
@@ -145,7 +149,10 @@ export function Rating({
   /**
    * reset values when poiner leave
    */
-  const onPointerLeave = () => dispatch({ type: 'PointerLeave' })
+  const onPointerLeave = () => {
+    dispatch({ type: 'PointerLeave' })
+    if (isTouchDevice()) onRate()
+  }
 
   /**
    * hadnle on click function
@@ -206,7 +213,7 @@ export function Rating({
     tooltipArray.length > 0 ? tooltipArray[valueIndex(value)] : renderValue(value)
 
   return (
-    <span style={{ display: 'inline-block', direction: `${rtl ? 'rtl' : 'ltr'}` }}>
+    <span style={{ display: 'inline-block', direction: `${rtl ? 'rtl' : 'ltr'}`, touchAction: 'none' }}>
       <span
         className={className}
         style={{
