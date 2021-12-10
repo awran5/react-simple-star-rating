@@ -1,4 +1,14 @@
-# react-simple-star-rating
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [4.0.2](https://github.com/awran5/react-simple-star-rating/compare/v4.0.0...v4.0.2) (2021-12-10)
+
+
+### Bug Fixes
+
+* fix [#6](https://github.com/awran5/react-simple-star-rating/issues/6) not working on mobile browsers ([d0c1c4d](https://github.com/awran5/react-simple-star-rating/commit/d0c1c4d31fa2209215ccbc3b1dfb386d0a46e49a))
+* **responsive issue:** add missing CSS to fix responsive ([5e20f1e](https://github.com/awran5/react-simple-star-rating/commit/5e20f1e78ea1480620b9ffc0303a3f646dfe3bcf))
 
 ## 2.0.0
 
