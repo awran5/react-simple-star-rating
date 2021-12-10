@@ -119,7 +119,7 @@ function App() {
 
         <div className='container px-4 px-md-3 mt-5 pt-5'>
           <div className='row mb-5 pb-md-4 align-items-center'>
-            <div className='col-md-10 mx-auto'>
+            <div className='col-12 col-lg-10 mx-auto'>
               <div className='box'>
                 <h3>Demo</h3>
                 <div className='demo'>
@@ -191,252 +191,253 @@ function App() {
                   </a>
                   Available Props
                 </h3>
-
-                <table className='table'>
-                  <thead>
-                    <tr>
-                      <th scope='col'>Prop</th>
-                      <th scope='col'>Options</th>
-                      <th scope='col'>Default</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope='row'>onClick</th>
-                      <td>
-                        <code className='text-primary'>function</code>
-                      </td>
-                      <td>
-                        <code>-</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>ratingValue</th>
-                      <td>
-                        <code className='text-primary'>number</code>
-                      </td>
-                      <td>
-                        <code>-</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>iconsCount</th>
-                      <td>
-                        <code className='text-primary'>number</code>
-                      </td>
-                      <td>
-                        <code>5</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>size</th>
-                      <td>
-                        <code className='text-primary'>number</code>
-                      </td>
-                      <td>
-                        <code>25</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>readonly</th>
-                      <td>
-                        <code className='text-primary'>boolean</code>
-                      </td>
-                      <td>
-                        <code>false</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>fillColor</th>
-                      <td>
-                        <code className='text-primary'>string</code>
-                      </td>
-                      <td>
-                        <code>#f1a545</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>fillColorArray</th>
-                      <td>
-                        <code className='text-primary'>string[]</code>
-                      </td>
-                      <td>
-                        <code>[]</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>emptyColor</th>
-                      <td>
-                        <code className='text-primary'>string</code>
-                      </td>
-                      <td>
-                        <code>#cccccc</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>fullIcon</th>
-                      <td>
-                        <code className='text-primary'>React.ReactElement</code>
-                      </td>
-                      <td>
-                        <code>null</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>emptyIcon</th>
-                      <td>
-                        <code className='text-primary'>React.ReactElement</code>
-                      </td>
-                      <td>
-                        <code>null</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>customIcons</th>
-                      <td>
-                        <code className='text-primary'>{`[ { icon: React.ReactElement } ]`}</code>
-                      </td>
-                      <td>
-                        <code>[]</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>rtl</th>
-                      <td>
-                        <code className='text-primary'>boolean</code>
-                      </td>
-                      <td>
-                        <code>false</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>allowHalfIcon</th>
-                      <td>
-                        <code className='text-primary'>boolean</code>
-                      </td>
-                      <td>
-                        <code>false</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>allowHover</th>
-                      <td>
-                        <code className='text-primary'>boolean</code>
-                      </td>
-                      <td>
-                        <code>true</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>transition</th>
-                      <td>
-                        <code className='text-primary'>boolean</code>
-                      </td>
-                      <td>
-                        <code>false</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>className</th>
-                      <td>
-                        <code className='text-primary'>string</code>
-                      </td>
-                      <td>
-                        <code>react-simple-star-rating</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>style</th>
-                      <td>
-                        <code className='text-primary'>React.CSSProperties</code>
-                      </td>
-                      <td>
-                        <code>-</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>fullClassName</th>
-                      <td>
-                        <code className='text-primary'>string</code>
-                      </td>
-                      <td>
-                        <code>filled-icons</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>emptyClassName</th>
-                      <td>
-                        <code className='text-primary'>string</code>
-                      </td>
-                      <td>
-                        <code>empty-icons</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>fullStyle</th>
-                      <td>
-                        <code className='text-primary'>React.CSSProperties</code>
-                      </td>
-                      <td>
-                        <code>-</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>emptyStyle</th>
-                      <td>
-                        <code className='text-primary'>React.CSSProperties</code>
-                      </td>
-                      <td>
-                        <code>-</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>showTooltip</th>
-                      <td>
-                        <code className='text-primary'>boolean</code>
-                      </td>
-                      <td>
-                        <code>false</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>tooltipDefaultText</th>
-                      <td>
-                        <code className='text-primary'>string</code>
-                      </td>
-                      <td>
-                        <code>Your Rate</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>tooltipArray</th>
-                      <td>
-                        <code className='text-primary'>string[]</code>
-                      </td>
-                      <td>
-                        <code>[]</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>tooltipClassName</th>
-                      <td>
-                        <code className='text-primary'>string</code>
-                      </td>
-                      <td>
-                        <code>rating-tooltip</code>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope='row'>tooltipStyle</th>
-                      <td>
-                        <code className='text-primary'>React.CSSProperties</code>
-                      </td>
-                      <td>
-                        <code>-</code>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className='table-responsive'>
+                  <table className='table'>
+                    <thead>
+                      <tr>
+                        <th scope='col'>Prop</th>
+                        <th scope='col'>Options</th>
+                        <th scope='col'>Default</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope='row'>onClick</th>
+                        <td>
+                          <code className='text-primary'>function</code>
+                        </td>
+                        <td>
+                          <code>-</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>ratingValue</th>
+                        <td>
+                          <code className='text-primary'>number</code>
+                        </td>
+                        <td>
+                          <code>-</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>iconsCount</th>
+                        <td>
+                          <code className='text-primary'>number</code>
+                        </td>
+                        <td>
+                          <code>5</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>size</th>
+                        <td>
+                          <code className='text-primary'>number</code>
+                        </td>
+                        <td>
+                          <code>25</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>readonly</th>
+                        <td>
+                          <code className='text-primary'>boolean</code>
+                        </td>
+                        <td>
+                          <code>false</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>fillColor</th>
+                        <td>
+                          <code className='text-primary'>string</code>
+                        </td>
+                        <td>
+                          <code>#f1a545</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>fillColorArray</th>
+                        <td>
+                          <code className='text-primary'>string[]</code>
+                        </td>
+                        <td>
+                          <code>[]</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>emptyColor</th>
+                        <td>
+                          <code className='text-primary'>string</code>
+                        </td>
+                        <td>
+                          <code>#cccccc</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>fullIcon</th>
+                        <td>
+                          <code className='text-primary'>React.ReactElement</code>
+                        </td>
+                        <td>
+                          <code>null</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>emptyIcon</th>
+                        <td>
+                          <code className='text-primary'>React.ReactElement</code>
+                        </td>
+                        <td>
+                          <code>null</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>customIcons</th>
+                        <td>
+                          <code className='text-primary'>{`[ { icon: React.ReactElement } ]`}</code>
+                        </td>
+                        <td>
+                          <code>[]</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>rtl</th>
+                        <td>
+                          <code className='text-primary'>boolean</code>
+                        </td>
+                        <td>
+                          <code>false</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>allowHalfIcon</th>
+                        <td>
+                          <code className='text-primary'>boolean</code>
+                        </td>
+                        <td>
+                          <code>false</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>allowHover</th>
+                        <td>
+                          <code className='text-primary'>boolean</code>
+                        </td>
+                        <td>
+                          <code>true</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>transition</th>
+                        <td>
+                          <code className='text-primary'>boolean</code>
+                        </td>
+                        <td>
+                          <code>false</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>className</th>
+                        <td>
+                          <code className='text-primary'>string</code>
+                        </td>
+                        <td>
+                          <code>react-simple-star-rating</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>style</th>
+                        <td>
+                          <code className='text-primary'>React.CSSProperties</code>
+                        </td>
+                        <td>
+                          <code>-</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>fullClassName</th>
+                        <td>
+                          <code className='text-primary'>string</code>
+                        </td>
+                        <td>
+                          <code>filled-icons</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>emptyClassName</th>
+                        <td>
+                          <code className='text-primary'>string</code>
+                        </td>
+                        <td>
+                          <code>empty-icons</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>fullStyle</th>
+                        <td>
+                          <code className='text-primary'>React.CSSProperties</code>
+                        </td>
+                        <td>
+                          <code>-</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>emptyStyle</th>
+                        <td>
+                          <code className='text-primary'>React.CSSProperties</code>
+                        </td>
+                        <td>
+                          <code>-</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>showTooltip</th>
+                        <td>
+                          <code className='text-primary'>boolean</code>
+                        </td>
+                        <td>
+                          <code>false</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>tooltipDefaultText</th>
+                        <td>
+                          <code className='text-primary'>string</code>
+                        </td>
+                        <td>
+                          <code>Your Rate</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>tooltipArray</th>
+                        <td>
+                          <code className='text-primary'>string[]</code>
+                        </td>
+                        <td>
+                          <code>[]</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>tooltipClassName</th>
+                        <td>
+                          <code className='text-primary'>string</code>
+                        </td>
+                        <td>
+                          <code>rating-tooltip</code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope='row'>tooltipStyle</th>
+                        <td>
+                          <code className='text-primary'>React.CSSProperties</code>
+                        </td>
+                        <td>
+                          <code>-</code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <div className='box'>

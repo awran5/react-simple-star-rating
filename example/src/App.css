@@ -39,6 +39,12 @@ tr > td > code {
   margin-bottom: 2rem;
 }
 
+@media (max-width: 767.98px) {
+  .box {
+    padding: 2rem 1rem;
+  }
+}
+
 .box h3 {
   font-size: 1.5rem;
 }
@@ -55,6 +61,12 @@ tr > td > code {
   box-shadow: 0px 1px 3px rgb(0 0 0 / 10%);
   margin: 2rem 0 3rem;
   border-radius: 0.25rem;
+}
+
+@media (max-width: 767.98px) {
+  .demo {
+    padding: 1rem;
+  }
 }
 
 svg {
