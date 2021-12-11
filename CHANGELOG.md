@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.3](https://github.com/awran5/react-simple-star-rating/compare/v4.0.2...v4.0.3) (2021-12-11)
+
+
+### Bug Fixes
+
+* click on touch devices ([cee11c2](https://github.com/awran5/react-simple-star-rating/commit/cee11c2e7fa2e23d872395fbaa1dc9f527aa4591))
+
 ### [4.0.2](https://github.com/awran5/react-simple-star-rating/compare/v4.0.0...v4.0.2) (2021-12-10)
 
 
