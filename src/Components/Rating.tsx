@@ -1,9 +1,12 @@
 import React, { useMemo, useReducer, useCallback, Fragment } from 'react'
 import { StarIcon } from './StarIcon'
 
-function isTouchDevice() {
-  return 'ontouchstart' in window || navigator.maxTouchPoints > 0
-}
+/**
+ * check for touch devices
+ *
+ * @returns `boolean`
+ */
+const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0
 
 function calculateCurrentPosition(totalIcons: number, positionX: number, width: number) {
   const singleHalfValue = 100 / totalIcons
@@ -46,11 +49,13 @@ function reducer(state: State, action: Action): State {
         defaultValue: state.defaultValue,
         hoverValue: null
       }
+
     case 'MouseClick':
       return {
         ...state,
         defaultValue: action.payload
       }
+
     default:
       return state
   }
@@ -123,10 +128,16 @@ export function Rating({
   })
 
   /**
+   * handle total icons
+   */
+  const totalIcons = useMemo(() => (allowHalfIcon ? iconsCount * 2 : iconsCount), [allowHalfIcon, iconsCount])
+
+  /**
    * use pointer event rather than mouse event
    *
    * @param event
    * @see https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
+   * @returns `void`
    */
 
   const onPointerMove = (event: React.PointerEvent<HTMLSpanElement>) => {
@@ -147,15 +158,21 @@ export function Rating({
   }
 
   /**
-   * reset values when poiner leave
+   *
+   * @param event
+   * @returns `void`
    */
-  const onPointerLeave = () => {
-    dispatch({ type: 'PointerLeave' })
-    if (isTouchDevice()) onRate()
+  const onPointerEnter = (event: React.PointerEvent<HTMLSpanElement>) => {
+    // enable only on touch devices
+    if (!isTouchDevice()) return
+
+    // call to get the value
+    onPointerMove(event)
   }
 
   /**
    * hadnle on click function
+   * @returns `void`
    */
   const onRate = () => {
     if (hoverValue) {
@@ -166,12 +183,20 @@ export function Rating({
   }
 
   /**
-   * handle total icons
+   * reset values when poiner leave
+   * @returns `void`
    */
-  const totalIcons = useMemo(() => (allowHalfIcon ? iconsCount * 2 : iconsCount), [allowHalfIcon, iconsCount])
+  const onPointerLeave = () => {
+    if (isTouchDevice()) onRate()
+
+    dispatch({ type: 'PointerLeave' })
+  }
 
   /**
    * convert value to index
+   *
+   * @param value number
+   * @returns `number` selected icon index
    */
   const valueIndex = useCallback(
     (value: number) => {
@@ -188,6 +213,9 @@ export function Rating({
 
   /**
    * convert percentage value to render value
+   *
+   * @param value number
+   * @returns `number` current value
    */
   const renderValue = useCallback((value: number) => (allowHalfIcon ? value / 2 / 10 : valueIndex(value) + 1), [
     allowHalfIcon,
@@ -195,8 +223,8 @@ export function Rating({
   ])
 
   /**
-   *
    * check for default rating or hover values
+   *
    * @returns `number` rating or hover values
    */
   const valuePercentage = useMemo(
@@ -227,6 +255,7 @@ export function Rating({
           ...style
         }}
         onPointerMove={readonly ? undefined : onPointerMove}
+        onPointerEnter={readonly ? undefined : onPointerEnter}
         onPointerLeave={readonly ? undefined : onPointerLeave}
         onClick={readonly ? undefined : onRate}
         aria-hidden='true'
