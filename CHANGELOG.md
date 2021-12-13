@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.4](https://github.com/awran5/react-simple-star-rating/compare/v4.0.3...v4.0.4) (2021-12-13)
+
+
+### Bug Fixes
+
+* handle  value issue [#7](https://github.com/awran5/react-simple-star-rating/issues/7) ([b28b534](https://github.com/awran5/react-simple-star-rating/commit/b28b534ce6a55bf18ff38817f1bd59610769eb4b))
+
 ### [4.0.3](https://github.com/awran5/react-simple-star-rating/compare/v4.0.2...v4.0.3) (2021-12-11)
 
 
