@@ -213,6 +213,15 @@ function App() {
                         </td>
                       </tr>
                       <tr>
+                        <th scope='row'>initialValue</th>
+                        <td>
+                          <code className='text-primary'>number</code>
+                        </td>
+                        <td>
+                          <code>0</code>
+                        </td>
+                      </tr>
+                      <tr>
                         <th scope='row'>ratingValue</th>
                         <td>
                           <code className='text-primary'>number</code>

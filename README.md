@@ -53,8 +53,9 @@ export default function MyComponent() {
 
 | Prop                 | Type            | Options  | Description                                   |          Default           |
 | -------------------- | --------------- | -------- | --------------------------------------------- | :------------------------: |
-| `onClick`            | function        | Required | Handles the returned rating value             |            `-`             |
 | `ratingValue`        | number          | Required | Rating value passed from the Rating component |            `-`             |
+| `onClick`            | function        | Optional | Handles the returned rating value             |            `-`             |
+| `initialValue`       | number          | Optional | Set initial value (needed to reset the value) |            `0`             |
 | `iconsCount`         | number          | Optional | Number of the icons                           |            `5`             |
 | `size`               | number          | Optional | Icon width / height in `px`                   |            `25`            |
 | `readonly`           | boolean         | Optional | Readonly mode                                 |          `false`           |
