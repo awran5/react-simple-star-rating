@@ -69,6 +69,7 @@ function App() {
   const [rating9, setRating9] = useState(0)
   const [rating10, setRating10] = useState(0)
   const [rating11, setRating11] = useState(0)
+  const [rating12, setRating12] = useState(0)
 
   const handleRating1 = (rate: number) => setRating1(rate)
   const handleRating2 = (rate: number) => setRating2(rate)
@@ -81,6 +82,7 @@ function App() {
   const handleRating9 = (rate: number) => setRating9(rate)
   const handleRating10 = (rate: number) => setRating10(rate)
   const handleRating11 = (rate: number) => setRating11(rate)
+  const handleRating12 = (rate: number) => setRating12(rate)
 
   // console.log(customIcons)
 
@@ -765,6 +767,61 @@ const customIcons = [
   ratingValue={ratingValue}
   rtl
 />`}
+                    codeBlock
+                    theme={monokaiSublime}
+                    showLineNumbers={false}
+                  />
+                </div>
+              </div>
+
+              <div className='box'>
+                <h3 id='handle-reset'>
+                  <a href='#handle-reset'>#12 </a>Handle reset
+                </h3>
+                <p>
+                  In order to reset, you need to set <code>initialValue</code> prop to your desired value, then you can
+                  reset the rating value with your <code>state</code>
+                </p>
+                <div className='demo'>
+                  <Rating
+                    onClick={handleRating12}
+                    ratingValue={rating12}
+                    initialValue={2.5}
+                    transition
+                    size={50}
+                    showTooltip
+                    allowHalfIcon
+                    tooltipArray={tooltipArray}
+                  />
+                  <span style={{ marginLeft: 20 }}>
+                    <button type='button' className='btn btn-primary btn-sm' onClick={() => setRating12(0)}>
+                      reset
+                    </button>
+                  </span>
+                </div>
+
+                <h4>code:</h4>
+                <div className='preview'>
+                  <CopyBlock
+                    language='jsx'
+                    text={`const [ratingValue, setRatingValue] = useState(0)
+  
+const handleRating = (rate: number) => {
+  setRatingValue(rate)
+}
+
+// later in your code call rating 'state' with your initial value
+const handleReset = () => {
+  setRatingValue(2.5)
+}
+  
+return (
+  <Rating 
+    onClick={handleRating}
+    initialValue={2.5}
+    ratingValue={ratingValue}
+  />
+)`}
                     codeBlock
                     theme={monokaiSublime}
                     showLineNumbers={false}
