@@ -779,8 +779,8 @@ const customIcons = [
                   <a href='#handle-reset'>#12 </a>Handle reset
                 </h3>
                 <p>
-                  In order to reset, you need to set <code>initialValue</code> prop to your desired value, then you can
-                  reset the rating value with your <code>state</code>
+                  In order to reset the rating value, you need to set <code>initialValue</code> prop to your desired
+                  value, then you can reset the value with your <code>state handler</code>
                 </p>
                 <div className='demo'>
                   <Rating
