@@ -62,7 +62,8 @@ function reducer(state: State, action: Action): State {
 }
 
 interface Props {
-  onClick: (value: number) => void
+  onClick?: (value: number) => void
+  initialValue?: number
   ratingValue: number
   iconsCount?: number
   size?: number
@@ -94,6 +95,7 @@ interface Props {
 
 export function Rating({
   onClick,
+  initialValue = 0,
   ratingValue = 0,
   iconsCount = 5,
   size = 40,
@@ -121,16 +123,12 @@ export function Rating({
   tooltipStyle
 }: Props) {
   const [{ defaultValue, hoverValue }, dispatch] = useReducer(reducer, {
-    defaultValue: allowHalfIcon
-      ? (ratingValue / iconsCount) * 100
-      : (Math.round(ratingValue) / iconsCount) * 100 || null,
+    defaultValue: ratingValue,
     hoverValue: null
   })
 
-  /**
-   * handle total icons
-   */
-  const totalIcons = useMemo(() => (allowHalfIcon ? iconsCount * 2 : iconsCount), [allowHalfIcon, iconsCount])
+  // re-render when ratingValue changes
+  React.useEffect(() => dispatch({ type: 'MouseClick', payload: ratingValue }), [ratingValue])
 
   /**
    * use pointer event rather than mouse event
@@ -139,7 +137,6 @@ export function Rating({
    * @see https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
    * @returns `void`
    */
-
   const onPointerMove = (event: React.PointerEvent<HTMLSpanElement>) => {
     const { clientX, currentTarget } = event
     // get main span element position and width
@@ -158,7 +155,7 @@ export function Rating({
   }
 
   /**
-   *
+   * handle onEnter
    * @param event
    * @returns `void`
    */
@@ -171,19 +168,19 @@ export function Rating({
   }
 
   /**
-   * hadnle on click function
+   * handle onClick
    * @returns `void`
    */
   const onRate = () => {
     if (hoverValue) {
       dispatch({ type: 'MouseClick', payload: hoverValue })
       // update value on click
-      onClick(hoverValue)
+      if (onClick) onClick(hoverValue)
     }
   }
 
   /**
-   * reset values when poiner leave
+   * handle onLeave
    * @returns `void`
    */
   const onPointerLeave = () => {
@@ -192,53 +189,44 @@ export function Rating({
     dispatch({ type: 'PointerLeave' })
   }
 
+  // if there is a local rating value, convert it to precentage
+  const localRating = useMemo(() => Math.round((initialValue / iconsCount) * 100), [initialValue, iconsCount])
+
   /**
-   * convert value to index
-   *
-   * @param value number
-   * @returns `number` selected icon index
+   * convert rating value to percentage value
+   * @returns `hover value` | `rating value` | `local rating`
    */
+  const valuePercentage = useMemo(
+    () => (allowHover && hoverValue && hoverValue) || (defaultValue && defaultValue) || localRating,
+    [allowHover, hoverValue, defaultValue, localRating]
+  )
+
+  // handle total icons
+  const totalIcons = useMemo(() => (allowHalfIcon ? iconsCount * 2 : iconsCount), [allowHalfIcon, iconsCount])
+
+  // convert value to index
   const valueIndex = useCallback(
     (value: number) => {
-      // start with `1` to avoid -1 values
       let index = 1
-
-      if (allowHalfIcon) index = value / totalIcons
-      else index = value / 2 / 10
+      if (value) {
+        if (allowHalfIcon) index = value / totalIcons
+        else index = value / 2 / 10
+      }
 
       return Math.round(index - 1)
     },
     [allowHalfIcon, totalIcons]
   )
 
-  /**
-   * convert percentage value to render value
-   *
-   * @param value number
-   * @returns `number` current value
-   */
+  // convert value to render value
   const renderValue = useCallback((value: number) => (allowHalfIcon ? value / 2 / 10 : valueIndex(value) + 1), [
     allowHalfIcon,
     valueIndex
   ])
 
-  /**
-   * check for default rating or hover values
-   *
-   * @returns `number` rating or hover values
-   */
-  const valuePercentage = useMemo(
-    () => (allowHover && hoverValue && hoverValue) || (defaultValue && defaultValue) || 0,
-    [allowHover, hoverValue, defaultValue]
-  )
-
-  /**
-   *
-   * @param value `number` default rating or hover value
-   * @returns `string | number` tootip array of strings or rating values
-   */
+  // handle tooltip values
   const handleTooltip = (value: number) =>
-    tooltipArray.length > 0 ? tooltipArray[valueIndex(value)] : renderValue(value)
+    tooltipArray.length > 0 ? tooltipArray[valueIndex(value)] : renderValue(value) || 0
 
   return (
     <span style={{ display: 'inline-block', direction: `${rtl ? 'rtl' : 'ltr'}`, touchAction: 'none' }}>
@@ -292,9 +280,7 @@ export function Rating({
             width: `${valuePercentage}%`,
             ...fullStyle
           }}
-          title={`${
-            (hoverValue && renderValue(hoverValue)) || (defaultValue && renderValue(defaultValue))
-          } out of ${iconsCount}`}
+          title={`${(hoverValue && renderValue(hoverValue)) || renderValue(localRating)} out of ${iconsCount}`}
         >
           {[...Array(iconsCount)].map((_, index) => (
             <Fragment key={index}>{customIcons[index]?.icon || fullIcon || <StarIcon size={size} />}</Fragment>
@@ -318,6 +304,7 @@ export function Rating({
         >
           {(hoverValue && handleTooltip(hoverValue)) ||
             (defaultValue && handleTooltip(defaultValue)) ||
+            (localRating && handleTooltip(localRating)) ||
             tooltipDefaultText}
         </span>
       )}
