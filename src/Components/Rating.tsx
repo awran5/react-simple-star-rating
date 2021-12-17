@@ -61,7 +61,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-interface Props {
+export interface Props {
   onClick?: (value: number) => void
   initialValue?: number
   ratingValue: number
