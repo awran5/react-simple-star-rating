@@ -1,3 +1,4 @@
-import { Rating } from './Components/Rating'
+import { Rating, Props } from './Components/Rating'
 
 export { Rating }
+export type { Props }
