@@ -13,7 +13,7 @@ export function StarIcon({
   strokeColor = 'none',
   storkeWidth = 0,
   className = 'star-svg',
-  style
+  style = { display: 'inline' }
 }: StarIconProps) {
   return (
     <svg fill='currentColor' width={size} height={size} viewBox='0 0 24 24' className={className} style={{ ...style }}>
