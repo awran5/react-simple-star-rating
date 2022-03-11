@@ -9,16 +9,15 @@ import { StarIcon } from './StarIcon'
 const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0
 
 function calculateCurrentPosition(totalIcons: number, positionX: number, width: number) {
-  const singleHalfValue = 100 / totalIcons
   const iconWidth = width / totalIcons
-  let currentValue = 100
+  let currentValue = totalIcons
 
   for (let i = 0; i < totalIcons; i += 1) {
     // if position less then quarter icon
     if (positionX <= iconWidth * i + iconWidth / 4) {
       // if there is no value return 0
       if (i === 0 && positionX < iconWidth / 2) currentValue = 0
-      else currentValue = singleHalfValue * i
+      else currentValue = i
       break
     }
   }
@@ -150,7 +149,7 @@ export function Rating({
 
     // set the value to state
     if (currentValue > 0 && hoverValue !== currentValue) {
-      dispatch({ type: 'PointerMove', payload: currentValue })
+      dispatch({ type: 'PointerMove', payload: currentValue * 100 / totalIcons })
     }
   }
 
@@ -209,20 +208,23 @@ export function Rating({
     (value: number) => {
       let index = 1
       if (value) {
-        if (allowHalfIcon) index = value / totalIcons
-        else index = value / 2 / 10
+        index = Math.round(value / 100 * totalIcons) + 1
       }
 
       return Math.round(index - 1)
     },
-    [allowHalfIcon, totalIcons]
+    [totalIcons]
   )
 
   // convert value to render value
-  const renderValue = useCallback((value: number) => (allowHalfIcon ? value / 2 / 10 : valueIndex(value) + 1), [
-    allowHalfIcon,
-    valueIndex
-  ])
+  const renderValue = useCallback(
+    (value: number) => {
+      const rvalue = valueIndex(value)
+
+      return allowHalfIcon ? rvalue / 2 : rvalue
+    },
+    [allowHalfIcon, valueIndex]
+  )
 
   // handle tooltip values
   const handleTooltip = (value: number) =>
