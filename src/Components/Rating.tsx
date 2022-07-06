@@ -91,6 +91,7 @@ export interface Props {
   tooltipArray?: string[]
   tooltipClassName?: string
   tooltipStyle?: React.CSSProperties
+  titleSeparator?: string
 }
 
 export function Rating({
@@ -121,7 +122,8 @@ export function Rating({
   tooltipDefaultText = 'Your Rate',
   tooltipArray = [],
   tooltipClassName = 'react-simple-star-rating-tooltip',
-  tooltipStyle
+  tooltipStyle,
+  titleSeparator = 'out of',
 }: Props) {
   const [{ defaultValue, hoverValue }, dispatch] = useReducer(reducer, {
     defaultValue: ratingValue,
@@ -290,7 +292,7 @@ export function Rating({
             width: `${valuePercentage}%`,
             ...fullStyle
           }}
-          title={`${(hoverValue && renderValue(hoverValue)) || renderValue(localRating)} out of ${iconsCount}`}
+          title={`${(hoverValue && renderValue(hoverValue)) || renderValue(localRating)} ${titleSeparator} ${iconsCount}`}
         >
           {[...Array(iconsCount)].map((_, index) => (
             <Fragment key={index}>{customIcons[index]?.icon || fullIcon || <StarIcon size={size} />}</Fragment>

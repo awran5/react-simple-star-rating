@@ -51,36 +51,37 @@ export default function MyComponent() {
 
 ### Available Props
 
-| Prop                  | Type            | Options  | Description                                   |          Default           |
-| --------------------- | --------------- | -------- | --------------------------------------------- | :------------------------: |
-| `ratingValue`         | number          | Required | Rating value passed from the Rating component |            `-`             |
-| `onClick`             | function        | Optional | Handles the returned rating value             |            `-`             |
-| `initialValue`        | number          | Optional | Set initial value (needed to reset the value) |            `0`             |
-| `iconsCount`          | number          | Optional | Number of the icons                           |            `5`             |
-| `size`                | number          | Optional | Icon width / height in `px`                   |            `25`            |
-| `readonly`            | boolean         | Optional | Readonly mode                                 |          `false`           |
-| `fillColor`           | string          | Optional | Full icons color                              |         `#f1a545`          |
-| `fillColorArray`      | array           | Optional | Array of string to add color range            |            `[]`            |
-| `emptyColor`          | string          | Optional | Empty icons color                             |         `#cccccc`          |
-| `fullIcon`            | ReactElement    | Optional | Custom full icon SVG                          |           `null`           |
-| `emptyIcon`           | ReactElement    | Optional | Custom empty icon SVG                         |           `null`           |
-| `customIcons`         | array of object | Optional | Add a group of icons                          |            `[]`            |
-| `rtl`                 | boolean         | Optional | RTL mode                                      |          `false`           |
-| `allowHalfIcon`       | boolean         | Optional | Enable a fractional icon (half icon)          |          `false`           |
-| `allowHover`          | boolean         | Optional | Enable / Disable hover effect                 |           `true`           |
-| `allowHoverOnDefault` | boolean         | Optional | Enable / Disable hover effect on fulled stars |           `true`           |
-| `transition`          | boolean         | Optional | Adds a transition effect on mouse hover       |          `false`           |
-| `className`           | string          | Optional | Applied to the `main` span                    | `react-simple-star-rating` |
-| `style`               | CSSProperties   | Optional | Inline style applied to the `main` span       |       `basic style`        |
-| `fullClassName`       | string          | Optional | Applied to the `filled` icon span             |       `filled-icons`       |
-| `emptyClassName`      | string          | Optional | Applied to the `empty` icon span              |       `empty-icons`        |
-| `fullStyle`           | CSSProperties   | Optional | Inline style applied to `filled` icon span    |       `basic style`        |
-| `emptyStyle`          | CSSProperties   | Optional | Inline style applied to `empty` icon span     |       `basic style`        |
-| `showTooltip`         | string          | Optional | Show a tooltip with live values               |          `false`           |
-| `tooltipDefaultText`  | string          | Optional | Initial tooltip text if no rating value       |        `Your Rate`         |
-| `tooltipArray`        | array           | Optional | Array of strings to show inside tooltip       |            `[]`            |
-| `tooltipClassName`    | string          | Optional | Tooltip CSS class                             |      `rating-tooltip`      |
-| `tooltipStyle`        | CSSProperties   | Optional | Inline style applied to the `tooltip` span    |       `basic style`        |
+| Prop                  | Type            | Options  | Description                                               |          Default           |
+| --------------------- | --------------- | -------- | --------------------------------------------------------- | :------------------------: |
+| `ratingValue`         | number          | Required | Rating value passed from the Rating component             |            `-`             |
+| `onClick`             | function        | Optional | Handles the returned rating value                         |            `-`             |
+| `initialValue`        | number          | Optional | Set initial value (needed to reset the value)             |            `0`             |
+| `iconsCount`          | number          | Optional | Number of the icons                                       |            `5`             |
+| `size`                | number          | Optional | Icon width / height in `px`                               |            `25`            |
+| `readonly`            | boolean         | Optional | Readonly mode                                             |          `false`           |
+| `fillColor`           | string          | Optional | Full icons color                                          |         `#f1a545`          |
+| `fillColorArray`      | array           | Optional | Array of string to add color range                        |            `[]`            |
+| `emptyColor`          | string          | Optional | Empty icons color                                         |         `#cccccc`          |
+| `fullIcon`            | ReactElement    | Optional | Custom full icon SVG                                      |           `null`           |
+| `emptyIcon`           | ReactElement    | Optional | Custom empty icon SVG                                     |           `null`           |
+| `customIcons`         | array of object | Optional | Add a group of icons                                      |            `[]`            |
+| `rtl`                 | boolean         | Optional | RTL mode                                                  |          `false`           |
+| `allowHalfIcon`       | boolean         | Optional | Enable a fractional icon (half icon)                      |          `false`           |
+| `allowHover`          | boolean         | Optional | Enable / Disable hover effect                             |           `true`           |
+| `allowHoverOnDefault` | boolean         | Optional | Enable / Disable hover effect on fulled stars             |           `true`           |
+| `transition`          | boolean         | Optional | Adds a transition effect on mouse hover                   |          `false`           |
+| `className`           | string          | Optional | Applied to the `main` span                                | `react-simple-star-rating` |
+| `style`               | CSSProperties   | Optional | Inline style applied to the `main` span                   |       `basic style`        |
+| `fullClassName`       | string          | Optional | Applied to the `filled` icon span                         |       `filled-icons`       |
+| `emptyClassName`      | string          | Optional | Applied to the `empty` icon span                          |       `empty-icons`        |
+| `fullStyle`           | CSSProperties   | Optional | Inline style applied to `filled` icon span                |       `basic style`        |
+| `emptyStyle`          | CSSProperties   | Optional | Inline style applied to `empty` icon span                 |       `basic style`        |
+| `showTooltip`         | string          | Optional | Show a tooltip with live values                           |          `false`           |
+| `tooltipDefaultText`  | string          | Optional | Initial tooltip text if no rating value                   |        `Your Rate`         |
+| `tooltipArray`        | array           | Optional | Array of strings to show inside tooltip                   |            `[]`            |
+| `tooltipClassName`    | string          | Optional | Tooltip CSS class                                         |      `rating-tooltip`      |
+| `tooltipStyle`        | CSSProperties   | Optional | Inline style applied to the `tooltip` span                |       `basic style`        |
+| `titleSeparator`      | string          | Optional | Separator word in a title of a rating star `(1 out of 5)` |          `out of`          |
 
 ---
 
