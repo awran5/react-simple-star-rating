@@ -30,5 +30,6 @@ export interface Props {
     tooltipArray?: string[];
     tooltipClassName?: string;
     tooltipStyle?: React.CSSProperties;
+    titleSeparator?: string;
 }
-export declare function Rating({ onClick, initialValue, ratingValue, iconsCount, size, readonly, fillColor, fillColorArray, emptyColor, fullIcon, emptyIcon, customIcons, rtl, allowHalfIcon, allowHover, allowHoverOnDefault, transition, className, style, fullClassName, emptyClassName, fullStyle, emptyStyle, showTooltip, tooltipDefaultText, tooltipArray, tooltipClassName, tooltipStyle }: Props): JSX.Element;
+export declare function Rating({ onClick, initialValue, ratingValue, iconsCount, size, readonly, fillColor, fillColorArray, emptyColor, fullIcon, emptyIcon, customIcons, rtl, allowHalfIcon, allowHover, allowHoverOnDefault, transition, className, style, fullClassName, emptyClassName, fullStyle, emptyStyle, showTooltip, tooltipDefaultText, tooltipArray, tooltipClassName, tooltipStyle, titleSeparator, }: Props): JSX.Element;
