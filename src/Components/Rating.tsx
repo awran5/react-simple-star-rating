@@ -78,6 +78,7 @@ export interface Props {
   rtl?: boolean
   allowHalfIcon?: boolean
   allowHover?: boolean
+  allowHoverOnDefault?: boolean
   transition?: boolean
   className?: string
   style?: React.CSSProperties
@@ -90,6 +91,7 @@ export interface Props {
   tooltipArray?: string[]
   tooltipClassName?: string
   tooltipStyle?: React.CSSProperties
+  titleSeparator?: string
 }
 
 export function Rating({
@@ -108,6 +110,7 @@ export function Rating({
   rtl = false,
   allowHalfIcon = false,
   allowHover = true,
+  allowHoverOnDefault = true,
   transition = false,
   className = 'react-simple-star-rating',
   style,
@@ -119,7 +122,8 @@ export function Rating({
   tooltipDefaultText = 'Your Rate',
   tooltipArray = [],
   tooltipClassName = 'react-simple-star-rating-tooltip',
-  tooltipStyle
+  tooltipStyle,
+  titleSeparator = 'out of',
 }: Props) {
   const [{ defaultValue, hoverValue }, dispatch] = useReducer(reducer, {
     defaultValue: ratingValue,
@@ -149,7 +153,7 @@ export function Rating({
 
     // set the value to state
     if (currentValue > 0 && hoverValue !== currentValue) {
-      dispatch({ type: 'PointerMove', payload: currentValue * 100 / totalIcons })
+      dispatch({ type: 'PointerMove', payload: (currentValue * 100) / totalIcons })
     }
   }
 
@@ -195,10 +199,16 @@ export function Rating({
    * convert rating value to percentage value
    * @returns `hover value` | `rating value` | `local rating`
    */
-  const valuePercentage = useMemo(
-    () => (allowHover && hoverValue && hoverValue) || (defaultValue && defaultValue) || localRating,
-    [allowHover, hoverValue, defaultValue, localRating]
-  )
+  const valuePercentage = useMemo(() => {
+    const currentValue = defaultValue ?? 0
+    const newValue = hoverValue && hoverValue > currentValue ? hoverValue : currentValue
+
+    return (
+      (allowHover && hoverValue && allowHoverOnDefault ? hoverValue : newValue) ||
+      (defaultValue && defaultValue) ||
+      localRating
+    )
+  }, [allowHover, allowHoverOnDefault, hoverValue, defaultValue, localRating])
 
   // handle total icons
   const totalIcons = useMemo(() => (allowHalfIcon ? iconsCount * 2 : iconsCount), [allowHalfIcon, iconsCount])
@@ -208,7 +218,7 @@ export function Rating({
     (value: number) => {
       let index = 1
       if (value) {
-        index = Math.round(value / 100 * totalIcons) + 1
+        index = Math.round((value / 100) * totalIcons) + 1
       }
 
       return Math.round(index - 1)
@@ -282,7 +292,7 @@ export function Rating({
             width: `${valuePercentage}%`,
             ...fullStyle
           }}
-          title={`${(hoverValue && renderValue(hoverValue)) || renderValue(localRating)} out of ${iconsCount}`}
+          title={`${(hoverValue && renderValue(hoverValue)) || renderValue(localRating)} ${titleSeparator} ${iconsCount}`}
         >
           {[...Array(iconsCount)].map((_, index) => (
             <Fragment key={index}>{customIcons[index]?.icon || fullIcon || <StarIcon size={size} />}</Fragment>
