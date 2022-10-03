@@ -1,323 +1,347 @@
-import React, { useMemo, useReducer, useCallback, Fragment } from 'react'
-import { StarIcon } from './StarIcon'
+import {
+  useMemo,
+  useReducer,
+  useCallback,
+  Fragment,
+  ReactNode,
+  CSSProperties,
+  MouseEvent,
+  PointerEvent,
+  useEffect
+} from 'react'
+import { StarIcon, StarIconProps } from './StarIcon'
+import { reducer } from '../reducer'
+import css from '../style.module.css'
 
-/**
- * check for touch devices
- *
- * @returns `boolean`
- */
-const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0
-
-function calculateCurrentPosition(totalIcons: number, positionX: number, width: number) {
-  const iconWidth = width / totalIcons
-  let currentValue = totalIcons
-
-  for (let i = 0; i < totalIcons; i += 1) {
-    // if position less then quarter icon
-    if (positionX <= iconWidth * i + iconWidth / 4) {
-      // if there is no value return 0
-      if (i === 0 && positionX < iconWidth / 2) currentValue = 0
-      else currentValue = i
-      break
-    }
-  }
-
-  return currentValue
-}
-
-type State = {
-  defaultValue: number | null
-  hoverValue: number | null
-}
-
-type Action =
-  | { type: 'PointerMove'; payload: number | null }
-  | { type: 'PointerLeave' }
-  | { type: 'MouseClick'; payload: number }
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'PointerMove':
-      return {
-        ...state,
-        hoverValue: action.payload
-      }
-
-    case 'PointerLeave':
-      return {
-        defaultValue: state.defaultValue,
-        hoverValue: null
-      }
-
-    case 'MouseClick':
-      return {
-        ...state,
-        defaultValue: action.payload
-      }
-
-    default:
-      return state
-  }
-}
-
-export interface Props {
-  onClick?: (value: number) => void
+export interface RatingProps extends StarIconProps {
+  /** Handles the returned rating value */
+  onClick?: (value: number, index: number, event?: MouseEvent<HTMLSpanElement>) => void
+  /** onPointerMove callback function with `hover`, `index` alongside `event` values passed */
+  onPointerMove?: (value: number, index: number, event: PointerEvent<HTMLSpanElement>) => void
+  /** onPointerEnter callback function */
+  onPointerEnter?: (event: PointerEvent<HTMLSpanElement>) => void
+  /** onPointerLeave callback function */
+  onPointerLeave?: (event: PointerEvent<HTMLSpanElement>) => void
+  /** Set initial value */
   initialValue?: number
-  ratingValue: number
+  /** Number of the icons */
   iconsCount?: number
-  size?: number
+  /** Read only mode */
   readonly?: boolean
-  fillColor?: string
-  fillColorArray?: string[]
-  emptyColor?: string
-  fullIcon?: React.ReactElement | null
-  emptyIcon?: React.ReactElement | null
+  /** Add a group of icons */
   customIcons?: {
-    icon: React.ReactElement
+    icon: ReactNode
   }[]
+  /** RTL mode */
   rtl?: boolean
-  allowHalfIcon?: boolean
+  /** Enable a fractional rate (half icon) */
+  allowFraction?: boolean
+  /** Enable / Disable hover effect on empty icons */
   allowHover?: boolean
-  allowHoverOnDefault?: boolean
+  /** Enable / Disable hover effect on filled icons */
+  disableFillHover?: boolean
+  /** Enable / Disable transition effect on mouse hover */
   transition?: boolean
+  /** Applied to the `main` span */
   className?: string
-  style?: React.CSSProperties
-  fullClassName?: string
+  /** Inline style applied to the `main` span */
+  style?: CSSProperties
+
+  /** Custom fill icon SVG */
+  fillIcon?: ReactNode | null
+  /** Filled icons color */
+  fillColor?: string
+  /** Array of string to add color range */
+  fillColorArray?: string[]
+  /** Inline style applied to `filled-icons` icon span  */
+  fillStyle?: CSSProperties
+  /** Filled icons `span` className */
+  fillClassName?: string
+
+  /** Custom empty icon SVG */
+  emptyIcon?: ReactNode | null
+  /** Empty icons color */
+  emptyColor?: string
+  /** Inline style applied to `empty-icons` span  */
+  emptyStyle?: CSSProperties
+  /** ٌُEmpty icons `span` className */
   emptyClassName?: string
-  fullStyle?: React.CSSProperties
-  emptyStyle?: React.CSSProperties
+
+  /** Show a tooltip with live values */
   showTooltip?: boolean
+  /** Initial tooltip text if there is no rating value */
   tooltipDefaultText?: string
+  /** Array of strings that will show inside the tooltip */
   tooltipArray?: string[]
+  /** Inline style applied to the `tooltip` span */
+  tooltipStyle?: CSSProperties
+  /** Tooltip CSS className */
   tooltipClassName?: string
-  tooltipStyle?: React.CSSProperties
+  /** Separator word in a title of a rating star `(1 out of 5)` */
   titleSeparator?: string
 }
 
 export function Rating({
   onClick,
+  onPointerMove,
+  onPointerEnter,
+  onPointerLeave,
   initialValue = 0,
-  ratingValue = 0,
   iconsCount = 5,
   size = 40,
   readonly = false,
+  rtl = false,
+  customIcons = [],
+  allowFraction = false,
+  style,
+  className = 'react-simple-star-rating',
+  transition = false,
+
+  allowHover = true,
+  disableFillHover = false,
+
+  fillIcon = null,
   fillColor = '#ffbc0b',
   fillColorArray = [],
-  emptyColor = '#cccccc',
-  fullIcon = null,
+  fillStyle,
+  fillClassName = 'filled-icons',
+
   emptyIcon = null,
-  customIcons = [],
-  rtl = false,
-  allowHalfIcon = false,
-  allowHover = true,
-  allowHoverOnDefault = true,
-  transition = false,
-  className = 'react-simple-star-rating',
-  style,
-  fullClassName = 'filled-icons',
-  emptyClassName = 'empty-icons',
-  fullStyle,
+  emptyColor = '#cccccc',
   emptyStyle,
+  emptyClassName = 'empty-icons',
+
   showTooltip = false,
   tooltipDefaultText = 'Your Rate',
   tooltipArray = [],
-  tooltipClassName = 'react-simple-star-rating-tooltip',
   tooltipStyle,
+  tooltipClassName = 'react-simple-star-rating-tooltip',
+
+  SVGclassName = 'star-svg',
   titleSeparator = 'out of',
-}: Props) {
-  const [{ defaultValue, hoverValue }, dispatch] = useReducer(reducer, {
-    defaultValue: ratingValue,
+  SVGstyle,
+  SVGstorkeWidth = 0,
+  SVGstrokeColor = 'currentColor'
+}: RatingProps) {
+  const [{ ratingValue, hoverValue, hoverIndex, valueIndex }, dispatch] = useReducer(reducer, {
+    hoverIndex: 0,
+    valueIndex: 0,
+    ratingValue: 0,
     hoverValue: null
   })
 
-  // re-render when ratingValue changes
-  React.useEffect(() => dispatch({ type: 'MouseClick', payload: ratingValue }), [ratingValue])
-
   /**
-   * use pointer event rather than mouse event
-   *
-   * @param event
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent
-   * @returns `void`
+   * Check for touch devices
+   * @returns `boolean`
    */
-  const onPointerMove = (event: React.PointerEvent<HTMLSpanElement>) => {
+  const isTouchDevice = useMemo(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0, [])
+  const totalIcons = useMemo(() => (allowFraction ? iconsCount * 2 : iconsCount), [allowFraction, iconsCount])
+
+  // Convert local rating value to precentage
+  const localRating = useMemo(() => {
+    if (initialValue > totalIcons) return 0
+
+    // Check for a decimal value
+    if (!allowFraction && Math.floor(initialValue) !== initialValue) {
+      return Math.ceil(initialValue) * 2 * 10
+    }
+
+    return Math.round((initialValue / iconsCount) * 100)
+  }, [allowFraction, initialValue, iconsCount, totalIcons])
+
+  const localRatingIndex = useMemo(() => (allowFraction ? initialValue * 2 - 1 : initialValue - 1) || 0, [
+    allowFraction,
+    initialValue
+  ])
+
+  const renderValue = useCallback((value: number) => (iconsCount % 2 !== 0 ? value / 2 / 10 : value / iconsCount), [
+    iconsCount
+  ])
+
+  const handlePointerMove = (event: PointerEvent<HTMLSpanElement>) => {
     const { clientX, currentTarget } = event
-    // get main span element position and width
+    // Get main span element position and width
     const { left, right, width } = currentTarget.children[0].getBoundingClientRect()
 
-    // set for RTL
+    // Handle RTL
     const positionX = rtl ? right - clientX : clientX - left
 
     // Get current pointer position while moves over the icons
-    const currentValue = calculateCurrentPosition(totalIcons, positionX, width)
+    let currentValue = totalIcons
+    const iconWidth = Math.round(width / totalIcons)
 
-    // set the value to state
-    if (currentValue > 0 && hoverValue !== currentValue) {
-      dispatch({ type: 'PointerMove', payload: (currentValue * 100) / totalIcons })
+    for (let i = 0; i <= totalIcons; i = i + 1) {
+      if (positionX <= iconWidth * i) {
+        if (i === 0 && positionX < iconWidth) currentValue = 0
+        else currentValue = i
+        break
+      }
+    }
+
+    const index = currentValue - 1
+
+    if (currentValue > 0) {
+      // Set value and index state
+      dispatch({ type: 'PointerMove', payload: (currentValue * 100) / totalIcons, index })
+
+      if (onPointerMove) {
+        if (hoverValue) onPointerMove(renderValue(hoverValue), index, event)
+      }
     }
   }
 
-  /**
-   * handle onEnter
-   * @param event
-   * @returns `void`
-   */
-  const onPointerEnter = (event: React.PointerEvent<HTMLSpanElement>) => {
-    // enable only on touch devices
-    if (!isTouchDevice()) return
+  const handlePointerEnter = (event: PointerEvent<HTMLSpanElement>) => {
+    if (onPointerEnter) onPointerEnter(event)
+    // Enable only on touch devices
+    if (!isTouchDevice) return
 
-    // call to get the value
-    onPointerMove(event)
+    handlePointerMove(event)
   }
 
-  /**
-   * handle onClick
-   * @returns `void`
-   */
-  const onRate = () => {
+  const handleClick = (event?: MouseEvent<HTMLSpanElement>) => {
     if (hoverValue) {
       dispatch({ type: 'MouseClick', payload: hoverValue })
-      // update value on click
-      if (onClick) onClick(hoverValue)
+      if (onClick) onClick(renderValue(hoverValue), hoverIndex, event)
     }
   }
 
-  /**
-   * handle onLeave
-   * @returns `void`
-   */
-  const onPointerLeave = () => {
-    if (isTouchDevice()) onRate()
+  const handlePointerLeave = (event: PointerEvent<HTMLSpanElement>) => {
+    if (isTouchDevice) handleClick()
 
     dispatch({ type: 'PointerLeave' })
+    if (onPointerLeave) onPointerLeave(event)
   }
 
-  // if there is a local rating value, convert it to precentage
-  const localRating = useMemo(() => Math.round((initialValue / iconsCount) * 100), [initialValue, iconsCount])
-
-  /**
-   * convert rating value to percentage value
-   * @returns `hover value` | `rating value` | `local rating`
-   */
   const valuePercentage = useMemo(() => {
-    const currentValue = defaultValue ?? 0
-    const newValue = hoverValue && hoverValue > currentValue ? hoverValue : currentValue
-
-    return (
-      (allowHover && hoverValue && allowHoverOnDefault ? hoverValue : newValue) ||
-      (defaultValue && defaultValue) ||
-      localRating
-    )
-  }, [allowHover, allowHoverOnDefault, hoverValue, defaultValue, localRating])
-
-  // handle total icons
-  const totalIcons = useMemo(() => (allowHalfIcon ? iconsCount * 2 : iconsCount), [allowHalfIcon, iconsCount])
-
-  // convert value to index
-  const valueIndex = useCallback(
-    (value: number) => {
-      let index = 1
-      if (value) {
-        index = Math.round((value / 100) * totalIcons) + 1
+    if (allowHover) {
+      if (disableFillHover) {
+        const currentValue = (ratingValue && ratingValue) || localRating
+        return hoverValue && hoverValue > currentValue ? hoverValue : currentValue
       }
+      return (hoverValue && hoverValue) || (ratingValue && ratingValue) || localRating
+    }
 
-      return Math.round(index - 1)
+    return (ratingValue && ratingValue) || localRating
+  }, [allowHover, disableFillHover, hoverValue, ratingValue, localRating])
+
+  useEffect(() => {
+    if (tooltipArray.length > totalIcons) {
+      console.error('tooltipArray Array length is bigger then Icons Count length.')
+    }
+  }, [tooltipArray.length, totalIcons])
+
+  // const handleTooltip = useCallback(
+  //   (value: number) => {
+  //     return tooltipArray.length > 0
+  //       ? tooltipArray[hoverIndex || valueIndex || localRatingIndex]
+  //       : renderValue(value) || 0
+  //   },
+  //   [tooltipArray, hoverIndex, valueIndex, localRatingIndex, renderValue]
+  // )
+
+  const ratingArray = useCallback(
+    (array: string[]) => {
+      return (
+        (hoverValue && array[hoverIndex]) ||
+        (ratingValue && array[valueIndex]) ||
+        (initialValue && array[localRatingIndex])
+      )
     },
-    [totalIcons]
+    [hoverValue, hoverIndex, ratingValue, valueIndex, initialValue, localRatingIndex]
   )
 
-  // convert value to render value
-  const renderValue = useCallback(
-    (value: number) => {
-      const rvalue = valueIndex(value)
-
-      return allowHalfIcon ? rvalue / 2 : rvalue
-    },
-    [allowHalfIcon, valueIndex]
-  )
-
-  // handle tooltip values
-  const handleTooltip = (value: number) =>
-    tooltipArray.length > 0 ? tooltipArray[valueIndex(value)] : renderValue(value) || 0
+  const ratingRenderValues = useMemo(() => {
+    return (
+      (hoverValue && renderValue(hoverValue)) ||
+      (ratingValue && renderValue(ratingValue)) ||
+      (initialValue && renderValue(localRating))
+    )
+  }, [hoverValue, renderValue, ratingValue, initialValue, localRating])
 
   return (
-    <span style={{ display: 'inline-block', direction: `${rtl ? 'rtl' : 'ltr'}`, touchAction: 'none' }}>
+    <span className={css.starRatingWrap} style={{ direction: `${rtl ? 'rtl' : 'ltr'}` }}>
       <span
-        className={className}
+        className={`${css.simpleStarRating} ${className}`}
         style={{
-          position: 'relative',
-          display: 'inline-block',
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
           cursor: readonly ? '' : 'pointer',
-          verticalAlign: 'middle',
-          userSelect: 'none',
           ...style
         }}
-        onPointerMove={readonly ? undefined : onPointerMove}
-        onPointerEnter={readonly ? undefined : onPointerEnter}
-        onPointerLeave={readonly ? undefined : onPointerLeave}
-        onClick={readonly ? undefined : onRate}
+        onPointerMove={readonly ? undefined : handlePointerMove}
+        onPointerEnter={readonly ? undefined : handlePointerEnter}
+        onPointerLeave={readonly ? undefined : handlePointerLeave}
+        onClick={readonly ? undefined : handleClick}
         aria-hidden='true'
       >
         <span
-          className={emptyClassName}
+          className={`${css.emptyIcons} ${emptyClassName}`}
           style={{
-            display: 'inline-block',
             color: emptyColor,
             ...emptyStyle
           }}
         >
           {[...Array(iconsCount)].map((_, index) => (
             <Fragment key={index}>
-              {customIcons[index]?.icon || emptyIcon || <StarIcon key={index} size={size} />}
+              {customIcons[index]?.icon || emptyIcon || (
+                <StarIcon
+                  SVGclassName={SVGclassName}
+                  SVGstyle={SVGstyle}
+                  SVGstorkeWidth={SVGstorkeWidth}
+                  SVGstrokeColor={SVGstrokeColor}
+                  size={size}
+                />
+              )}
             </Fragment>
           ))}
         </span>
 
         <span
-          className={fullClassName}
+          className={`${css.fillIcons} ${fillClassName}`}
           style={{
-            position: 'absolute',
-            top: 0,
             [rtl ? 'right' : 'left']: 0,
-            color:
-              (allowHover && hoverValue && fillColorArray[valueIndex(hoverValue)]) ||
-              (defaultValue && fillColorArray[valueIndex(defaultValue)]) ||
-              fillColor,
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            display: 'inline-block',
+            color: ratingArray(fillColorArray) || fillColor,
+
             transition: transition ? 'width .2s ease, color .2s ease' : '',
             width: `${valuePercentage}%`,
-            ...fullStyle
+            ...fillStyle
           }}
-          title={`${(hoverValue && renderValue(hoverValue)) || renderValue(localRating)} ${titleSeparator} ${iconsCount}`}
+          title={`${
+            (hoverValue && renderValue(hoverValue)) || renderValue(localRating)
+          } ${titleSeparator} ${iconsCount}`}
         >
           {[...Array(iconsCount)].map((_, index) => (
-            <Fragment key={index}>{customIcons[index]?.icon || fullIcon || <StarIcon size={size} />}</Fragment>
+            <Fragment key={index}>
+              {customIcons[index]?.icon || fillIcon || (
+                <StarIcon
+                  SVGclassName={SVGclassName}
+                  SVGstyle={SVGstyle}
+                  SVGstorkeWidth={SVGstorkeWidth}
+                  SVGstrokeColor={SVGstrokeColor}
+                  size={size}
+                />
+              )}
+            </Fragment>
           ))}
         </span>
       </span>
 
       {showTooltip && (
         <span
-          className={tooltipClassName}
+          className={`${css.tooltip} ${tooltipClassName}`}
           style={{
-            display: 'inline-block',
-            padding: '5px 15px',
-            backgroundColor: '#333',
-            color: '#fff',
             [rtl ? 'marginRight' : 'marginLeft']: 20,
-            verticalAlign: 'middle',
-            borderRadius: 5,
             ...tooltipStyle
           }}
         >
-          {(hoverValue && handleTooltip(hoverValue)) ||
-            (defaultValue && handleTooltip(defaultValue)) ||
-            (localRating && handleTooltip(localRating)) ||
-            tooltipDefaultText}
+          {/* {tooltipArray.length > 0
+            ? (hoverValue && tooltipArray[hoverIndex]) ||
+              (ratingValue && tooltipArray[valueIndex]) ||
+              (initialValue && tooltipArray[localRatingIndex])
+            : (hoverValue && renderValue(hoverValue)) ||
+              (ratingValue && renderValue(ratingValue)) ||
+              renderValue(localRating) ||
+              tooltipDefaultText} */}
+
+          {(tooltipArray.length > 0 ? ratingArray(tooltipArray) : ratingRenderValues) || tooltipDefaultText}
         </span>
       )}
     </span>
