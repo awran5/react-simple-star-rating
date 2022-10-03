@@ -2,9 +2,7 @@
 
 > A simple react component for adding a star rating to your project.
 
-[![NPM](https://img.shields.io/npm/v/react-simple-star-rating.svg)](https://www.npmjs.com/package/react-simple-star-rating)
-![npm bundle size](https://img.shields.io/bundlephobia/min/react-simple-star-rating)
-![GitHub](https://img.shields.io/github/license/awran5/react-simple-star-rating)
+[![NPM](https://img.shields.io/npm/v/react-simple-star-rating.svg)](https://www.npmjs.com/package/react-simple-star-rating) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)![npm bundle size](https://img.shields.io/bundlephobia/min/react-simple-star-rating)![GitHub](https://img.shields.io/github/license/awran5/react-simple-star-rating)
 
 <p align="center">
   <img src="./screenshot.gif" alt="screenshot" width="100%" />
@@ -33,17 +31,28 @@ import React, { useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 
 export default function MyComponent() {
-  const [rating, setRating] = useState(0) // initial rating value
+  const [rating, setRating] = useState(0)
 
   // Catch Rating value
   const handleRating = (rate: number) => {
     setRating(rate)
+
     // other logic
   }
+  // Optinal callback functions
+  const onPointerEnter = () => console.log('Enter')
+  const onPointerLeave = () => console.log('Leave')
+  const onPointerMove = (value: number, index: number) => console.log(value, index)
 
   return (
     <div className='App'>
-      <Rating onClick={handleRating} ratingValue={rating} /* Available Props */ />
+      <Rating
+        onClick={handleRating}
+        onPointerEnter={onPointerEnter}
+        onPointerLeave={onPointerLeave}
+        onPointerMove={onPointerMove}
+        /* Available Props */
+      />
     </div>
   )
 }
@@ -51,56 +60,57 @@ export default function MyComponent() {
 
 ### Available Props
 
-| Prop                  | Type            | Options  | Description                                               |          Default           |
-| --------------------- | --------------- | -------- | --------------------------------------------------------- | :------------------------: |
-| `ratingValue`         | number          | Required | Rating value passed from the Rating component             |            `-`             |
-| `onClick`             | function        | Optional | Handles the returned rating value                         |            `-`             |
-| `initialValue`        | number          | Optional | Set initial value (needed to reset the value)             |            `0`             |
-| `iconsCount`          | number          | Optional | Number of the icons                                       |            `5`             |
-| `size`                | number          | Optional | Icon width / height in `px`                               |            `25`            |
-| `readonly`            | boolean         | Optional | Readonly mode                                             |          `false`           |
-| `fillColor`           | string          | Optional | Full icons color                                          |         `#f1a545`          |
-| `fillColorArray`      | array           | Optional | Array of string to add color range                        |            `[]`            |
-| `emptyColor`          | string          | Optional | Empty icons color                                         |         `#cccccc`          |
-| `fullIcon`            | ReactElement    | Optional | Custom full icon SVG                                      |           `null`           |
-| `emptyIcon`           | ReactElement    | Optional | Custom empty icon SVG                                     |           `null`           |
-| `customIcons`         | array of object | Optional | Add a group of icons                                      |            `[]`            |
-| `rtl`                 | boolean         | Optional | RTL mode                                                  |          `false`           |
-| `allowHalfIcon`       | boolean         | Optional | Enable a fractional icon (half icon)                      |          `false`           |
-| `allowHover`          | boolean         | Optional | Enable / Disable hover effect                             |           `true`           |
-| `allowHoverOnDefault` | boolean         | Optional | Enable / Disable hover effect on fulled stars             |           `true`           |
-| `transition`          | boolean         | Optional | Adds a transition effect on mouse hover                   |          `false`           |
-| `className`           | string          | Optional | Applied to the `main` span                                | `react-simple-star-rating` |
-| `style`               | CSSProperties   | Optional | Inline style applied to the `main` span                   |       `basic style`        |
-| `fullClassName`       | string          | Optional | Applied to the `filled` icon span                         |       `filled-icons`       |
-| `emptyClassName`      | string          | Optional | Applied to the `empty` icon span                          |       `empty-icons`        |
-| `fullStyle`           | CSSProperties   | Optional | Inline style applied to `filled` icon span                |       `basic style`        |
-| `emptyStyle`          | CSSProperties   | Optional | Inline style applied to `empty` icon span                 |       `basic style`        |
-| `showTooltip`         | string          | Optional | Show a tooltip with live values                           |          `false`           |
-| `tooltipDefaultText`  | string          | Optional | Initial tooltip text if no rating value                   |        `Your Rate`         |
-| `tooltipArray`        | array           | Optional | Array of strings to show inside tooltip                   |            `[]`            |
-| `tooltipClassName`    | string          | Optional | Tooltip CSS class                                         |      `rating-tooltip`      |
-| `tooltipStyle`        | CSSProperties   | Optional | Inline style applied to the `tooltip` span                |       `basic style`        |
-| `titleSeparator`      | string          | Optional | Separator word in a title of a rating star `(1 out of 5)` |          `out of`          |
+| Prop                 | Type             | Options  | Description                                               |          Default           |
+| -------------------- | ---------------- | -------- | --------------------------------------------------------- | :------------------------: |
+| `onClick`            | function         | Optional | callback with `hover`, `index` and `event` values passed  |            `-`             |
+| `onPointerMove`      | function         | Optional | callback with `hover`, `index` and `event` values passed  |            `-`             |
+| `onPointerEnter`     | function         | Optional | callback with `event` passed                              |            `-`             |
+| `onPointerLeave`     | function         | Optional | callback with `event` passed                              |            `-`             |
+| `initialValue`       | number           | Optional | Set initial value                                         |            `0`             |
+| `iconsCount`         | number           | Optional | Number of the icons                                       |            `5`             |
+| `readonly`           | boolean          | Optional | Readonly mode                                             |          `false`           |
+| `rtl`                | boolean          | Optional | RTL mode                                                  |          `false`           |
+| `transition`         | boolean          | Optional | Adds a smooth transition effect on mouse hover            |          `false`           |
+| `allowFraction`      | boolean          | Optional | Enable a fractional icon (half icon)                      |          `false`           |
+| `className`          | string           | Optional | Applied to the `main` span                                | `react-simple-star-rating` |
+| `style`              | CSSProperties    | Optional | Inline style applied to the `main` span                   |       `basic style`        |
+| `size`               | number           | Optional | SVG Icon width / height in `px`                           |            `25`            |
+| `SVGstrokeColor`     | string           | Optional | SVG Icon stroke color                                     |       `currentColor`       |
+| `SVGstorkeWidth`     | string \| number | Optional | SVG Icon storke width                                     |            `0`             |
+| `SVGclassName`       | string           | Optional | SVG Icon css class                                        |         `star-svg`         |
+| `SVGstyle`           | CSSProperties    | Optional | SVG inline style                                          |            `-`             |
+| `fillIcon`           | ReactNode        | Optional | Custom fill icon SVG                                      |           `null`           |
+| `fillColor`          | string           | Optional | Fill icons color                                          |         `#f1a545`          |
+| `fillColorArray`     | array            | Optional | Array of string to add color range                        |            `[]`            |
+| `fillStyle`          | CSSProperties    | Optional | Inline style applied to `filled` icon span                |       `basic style`        |
+| `fillClassName`      | string           | Optional | Applied to the `filled` icon span                         |       `filled-icons`       |
+| `emptyIcon`          | ReactNode        | Optional | Custom empty icon SVG                                     |           `null`           |
+| `emptyColor`         | string           | Optional | Empty icons color                                         |         `#cccccc`          |
+| `emptyStyle`         | CSSProperties    | Optional | Inline style applied to `empty` icon span                 |       `basic style`        |
+| `emptyClassName`     | string           | Optional | Applied to the `empty` icon span                          |       `empty-icons`        |
+| `customIcons`        | array of object  | Optional | Add a group of icons                                      |            `[]`            |
+| `allowHover`         | boolean          | Optional | Enable / Disable hover effect                             |           `true`           |
+| `disableFillHover`   | boolean          | Optional | Enable / Disable hover effect on filled stars             |          `false`           |
+| `showTooltip`        | string           | Optional | Show a tooltip with live values                           |          `false`           |
+| `tooltipDefaultText` | string           | Optional | Initial tooltip text if no rating value                   |        `Your Rate`         |
+| `tooltipArray`       | array            | Optional | Array of strings to show inside tooltip                   |            `[]`            |
+| `tooltipClassName`   | string           | Optional | Tooltip CSS class                                         |      `rating-tooltip`      |
+| `tooltipStyle`       | CSSProperties    | Optional | Inline style applied to the `tooltip` span                |       `basic style`        |
+| `titleSeparator`     | string           | Optional | Separator word in a title of a rating star `(1 out of 5)` |          `out of`          |
 
 ---
 
 <br />
 
-## Migrate to v4
+## BREAKING CHANGES: version [4.1.0](https://github.com/awran5/react-simple-star-rating/compare/v4.0.5...v4.1.0) (2022-10-03)
 
-1. Old props changes
-
-| old        | new            | changes   |
-| ---------- | -------------- | --------- |
-| `stars`    | `iconsCount`   | `Renamed` |
-| `children` | `inline props` | `Removed` |
-
-2. Remove `RatingView` Component, now you can use `readonly` prop instead
-
-3. Custom SVG, You can use your own `SVG` now as a inline props `fullIcon` | `emptyIcon` | `customIcons`. See all available props above
-
-<br />
+| old             | new             | changes   |
+| --------------- | --------------- | --------- |
+| `allowHalfIcon` | `allowFraction` | `Renamed` |
+| `fullIcon`      | `fillIcon`      | `Renamed` |
+| `fullStyle`     | `fillStyle`     | `Renamed` |
+| `fullClassName` | `fillClassName` | `Renamed` |
+| `ratingValue`   | `-`             | `Removed` |
 
 ## Demos
 
