@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/awran5/react-simple-star-rating/compare/v4.0.5...v4.1.0) (2022-10-03)
+
+
+### Features
+
+* add allowHoverOnDefault prop & update docs ([f6224c8](https://github.com/awran5/react-simple-star-rating/commit/f6224c87f427ec8cc5c17d52b1253fdacdec3ab4))
+* add css module ([ad2bca7](https://github.com/awran5/react-simple-star-rating/commit/ad2bca7968fbff86fdd3a212358534b4cb9be134))
+* add more props ([e475a1a](https://github.com/awran5/react-simple-star-rating/commit/e475a1aa4218847d404291be35de36ff0dd006ad))
+* add postcss ([9acc4db](https://github.com/awran5/react-simple-star-rating/commit/9acc4db17341c95f2669cf3371a5077e4b58776f))
+* add react types ([1a6cbb6](https://github.com/awran5/react-simple-star-rating/commit/1a6cbb6a7e506b962326920fe896fe391079d03b))
+* add storybook ([adc8285](https://github.com/awran5/react-simple-star-rating/commit/adc8285f752df41ffe5c1a4a601decdc14a6b70b))
+* add storybook build ([4ddc939](https://github.com/awran5/react-simple-star-rating/commit/4ddc939ab7dcb962c24e98d5676d18d740990bd5))
+* add titleSeparator prop & update docs ([95832f5](https://github.com/awran5/react-simple-star-rating/commit/95832f551daba0ad67796deca5b3854f2a5e2bb5))
+
+
+### Bug Fixes
+
+* adds default styling for starsvg ([1f9ca2e](https://github.com/awran5/react-simple-star-rating/commit/1f9ca2e4b1524e699801da6c9ef1590d1a19a878))
+* issue [#10](https://github.com/awran5/react-simple-star-rating/issues/10) ([72d03ba](https://github.com/awran5/react-simple-star-rating/commit/72d03ba8e0b5087fa03f6acc77c0b5e8295eb3c5))
+* various bugs and improvment. ([8aea6ee](https://github.com/awran5/react-simple-star-rating/commit/8aea6ee806e52e1d01113114ab7462a6903bf47c))
+
 ### [4.0.5](https://github.com/awran5/react-simple-star-rating/compare/v4.0.4...v4.0.5) (2021-12-13)
 
 ### [4.0.4](https://github.com/awran5/react-simple-star-rating/compare/v4.0.3...v4.0.4) (2021-12-13)
