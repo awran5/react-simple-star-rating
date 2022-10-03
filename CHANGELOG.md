@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/awran5/react-simple-star-rating/compare/v5.0.0...v5.1.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* remove unnecessary css ([962c126](https://github.com/awran5/react-simple-star-rating/commit/962c1267c9c41cfd5652e0362c7dcb25a47ff1de)), closes [#25](https://github.com/awran5/react-simple-star-rating/issues/25)
+
 ## [5.0.0](https://github.com/awran5/react-simple-star-rating/compare/v4.1.1...v5.0.0) (2022-10-03)
 
 ## [4.1.0](https://github.com/awran5/react-simple-star-rating/compare/v4.0.5...v4.1.0) (2022-10-03)
