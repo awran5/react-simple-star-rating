@@ -27,7 +27,7 @@
     "build": "rollup -c --exports auto",
     "dorelease": "standard-version",
     "sb": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook && vercel --prod"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
