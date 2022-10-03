@@ -7,6 +7,7 @@ example/node_modules
 
 # builds
 build
+storybook-static
 dist
 
 # misc

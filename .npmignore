@@ -1,7 +1,9 @@
 src
 example
+.storybook
 .eslintignore
 .eslintrc.js
 .prettierrc
 tsconfig.json
 rollup.*
+storybook-static
