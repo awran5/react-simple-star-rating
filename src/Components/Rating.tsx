@@ -134,7 +134,7 @@ export function Rating({
    * Check for touch devices
    * @returns `boolean`
    */
-  const isTouchDevice = useMemo(() => 'ontouchstart' in window || navigator.maxTouchPoints > 0, [])
+  const isTouchDevice = useMemo(() => !!window?.ontouchstart || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0), [])
   const totalIcons = useMemo(() => (allowFraction ? iconsCount * 2 : iconsCount), [allowFraction, iconsCount])
 
   // Convert local rating value to precentage
