@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.2](https://github.com/awran5/react-simple-star-rating/compare/v5.1.1...v5.1.2) (2022-10-07)
+
 ## [5.1.0](https://github.com/awran5/react-simple-star-rating/compare/v5.0.0...v5.1.0) (2022-10-03)
 
 
