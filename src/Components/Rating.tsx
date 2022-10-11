@@ -81,6 +81,18 @@ export interface RatingProps extends StarIconProps {
   titleSeparator?: string
 }
 
+/**
+ * Check for touch devices
+ * @returns `boolean`
+ */
+function isTouchDevice() {
+  return (
+    (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) ||
+    'ontouchstart' in window ||
+    (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0)
+  )
+}
+
 export function Rating({
   onClick,
   onPointerMove,
@@ -130,11 +142,6 @@ export function Rating({
     hoverValue: null
   })
 
-  /**
-   * Check for touch devices
-   * @returns `boolean`
-   */
-  const isTouchDevice = useMemo(() => !!window?.ontouchstart || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0), [])
   const totalIcons = useMemo(() => (allowFraction ? iconsCount * 2 : iconsCount), [allowFraction, iconsCount])
 
   // Convert local rating value to precentage
@@ -193,7 +200,7 @@ export function Rating({
   const handlePointerEnter = (event: PointerEvent<HTMLSpanElement>) => {
     if (onPointerEnter) onPointerEnter(event)
     // Enable only on touch devices
-    if (!isTouchDevice) return
+    if (!isTouchDevice()) return
 
     handlePointerMove(event)
   }
@@ -206,7 +213,7 @@ export function Rating({
   }
 
   const handlePointerLeave = (event: PointerEvent<HTMLSpanElement>) => {
-    if (isTouchDevice) handleClick()
+    if (isTouchDevice()) handleClick()
 
     dispatch({ type: 'PointerLeave' })
     if (onPointerLeave) onPointerLeave(event)
