@@ -11,7 +11,7 @@ import { Rating } from '../components/Rating'
       font-weight: 900;
       font-size: 13px;
       color: #999;
-      letter-spacing: 6px;
+      letter-spacing: 3px;
       line-height: 24px;
       text-transform: uppercase;
       margin-bottom: 12px;
@@ -121,7 +121,9 @@ npm i react-simple-star-rating
 yarn add react-simple-star-rating
 ```
 
-<div className='subheading'>Usage</div>
+<div className='subheading' id='usage'>
+  Usage
+</div>
 
 ```jsx
 import React, { useState } from 'react'
@@ -137,6 +139,34 @@ function App() {
     <Rating onClick={handleRating}
       {/* props */}
     />
+  )
+```
+
+<div className='subheading' id='reset-rating-value'>
+  Reset Rating Value
+</div>
+
+```jsx
+import React, { useState } from 'react'
+import { Rating } from 'react-simple-star-rating'
+
+function App() {
+  const [ratingValue, setRatingValue] = useState(0)
+
+  const handleRating = (rate: number) => {
+    setRatingValue(rate)
+  }
+  const handleReset = () => {
+    // Set the initial value
+    setRating(0)
+  }
+  return (
+    <>
+      {/* set initial value */}
+      <Rating onClick={handleRating} initialValue={ratingValue} />
+
+      <button onClick={handleReset}>reset</button>
+    </>
   )
 ```
 

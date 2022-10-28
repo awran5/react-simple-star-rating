@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { useState } from 'react'
 import {
   MdFavoriteBorder,
   MdFavorite,
@@ -17,24 +19,25 @@ export default {
   argTypes: {}
 } as ComponentMeta<typeof Rating>
 
-const Template: ComponentStory<typeof Rating> = (args) =>
-  args.rtl ? (
+const Template: ComponentStory<typeof Rating> = (args) => {
+  const [rating, setRating] = useState(0)
+  const handleClick = (value: number) => setRating(value)
+
+  return (
     <div
       style={{
-        display: 'inlineBlock',
-        direction: 'rtl',
+        fontFamily: 'sans-serif',
+        direction: `${args.rtl ? 'rtl' : 'ltr'}`,
         touchAction: 'none'
       }}
     >
-      <Rating {...args} />
+      <Rating {...args} onClick={handleClick} />
     </div>
-  ) : (
-    <Rating {...args} />
   )
+}
 
 export const Default = Template.bind({})
 Default.args = {
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -43,7 +46,6 @@ Default.args = {
 export const TransitionEffect = Template.bind({})
 TransitionEffect.args = {
   transition: true,
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -53,7 +55,6 @@ export const InitialValue = Template.bind({})
 InitialValue.args = {
   initialValue: 3,
   transition: true,
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -63,7 +64,6 @@ export const ColorRange = Template.bind({})
 ColorRange.args = {
   transition: true,
   fillColorArray: ['#f14f45', '#f16c45', '#f18845', '#f1b345', '#f1d045'],
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -72,7 +72,6 @@ ColorRange.args = {
 export const WithTooltip = Template.bind({})
 WithTooltip.args = {
   showTooltip: true,
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -82,7 +81,6 @@ export const CustomTooltip = Template.bind({})
 CustomTooltip.args = {
   showTooltip: true,
   tooltipArray: ['Terrible', 'Bad', 'Average', 'Great', 'Prefect'],
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -92,7 +90,6 @@ export const ReadOnlyMode = Template.bind({})
 ReadOnlyMode.args = {
   initialValue: 2,
   readonly: true,
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -115,7 +112,6 @@ FractionRate.args = {
     'Awesome',
     'Awesome+'
   ],
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -126,7 +122,6 @@ CustomSVG.args = {
   fillIcon: <MdFavorite size={50} />,
   emptyIcon: <MdFavoriteBorder size={50} />,
   transition: true,
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -142,7 +137,6 @@ CustomSVGGroup.args = {
     { icon: <MdOutlineSentimentVerySatisfied size={50} /> }
   ],
   transition: true,
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -152,7 +146,6 @@ export const DisableHover = Template.bind({})
 DisableHover.args = {
   allowHover: false,
   disableFillHover: false,
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -161,7 +154,6 @@ DisableHover.args = {
 export const DisableFillHover = Template.bind({})
 DisableFillHover.args = {
   disableFillHover: true,
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -196,7 +188,6 @@ IconsCount.args = {
     '#f1d045',
     '#f1de45'
   ],
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
@@ -209,18 +200,11 @@ RTLSupport.args = {
   titleSeparator: 'من',
   tooltipDefaultText: 'التقييم',
   tooltipArray: ['سيئ جدا', 'سيئ', 'متوسط', 'رائع', 'ممتاز'],
-  onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
 }
 
-export const OnClick = Template.bind({})
-OnClick.args = {
-  onPointerEnter: undefined,
-  onPointerLeave: undefined,
-  onPointerMove: undefined
-}
 export const onPointerEnter = Template.bind({})
 onPointerEnter.args = {
   onClick: undefined,
@@ -240,4 +224,29 @@ onPointerMove.args = {
   onClick: undefined,
   onPointerEnter: undefined,
   onPointerLeave: undefined
+}
+
+export const ResetRating: ComponentStory<typeof Rating> = (args) => {
+  const [rating, setRating] = useState(0)
+  const handleClick = (value: number) => setRating(value)
+  const handleReset = () => setRating(0)
+
+  return (
+    <div
+      style={{
+        direction: `${args.rtl ? 'rtl' : 'ltr'}`,
+        touchAction: 'none'
+      }}
+    >
+      <Rating {...args} onClick={handleClick} initialValue={rating} />
+      <button style={{ marginLeft: 10 }} onClick={handleReset}>
+        reset
+      </button>
+    </div>
+  )
+}
+ResetRating.args = {
+  onPointerEnter: undefined,
+  onPointerLeave: undefined,
+  onPointerMove: undefined
 }
