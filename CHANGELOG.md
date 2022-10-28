@@ -4,13 +4,16 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [5.1.5](https://github.com/awran5/react-simple-star-rating/compare/v5.1.4...v5.1.5) (2022-10-28)
 
-### [5.1.3](https://github.com/awran5/react-simple-star-rating/compare/v5.1.2...v5.1.3) (2022-10-11)
+### Bug Fixes
 
+- fix: reset reating not working properly [#34](https://github.com/awran5/react-simple-star-rating/issues/31)
+
+### [5.1.3](https://github.com/awran5/react-simple-star-rating/compare/v5.1.2...v5.1.3) (2022-10-11)
 
 ### Bug Fixes
 
-* window is not defined error while using Next.js ([aeeeb57](https://github.com/awran5/react-simple-star-rating/commit/aeeeb577b87fb0b5d0ac8e8dfa2a9ceb64506f92)), closes [#28](https://github.com/awran5/react-simple-star-rating/issues/28)
-* window is undefined" and "navigator is undefined" when using in Next.js ([abb3c5b](https://github.com/awran5/react-simple-star-rating/commit/abb3c5bcf566bee4ec07dfdab350fac93182b43b)), closes [#26](https://github.com/awran5/react-simple-star-rating/issues/26)
+- window is not defined error while using Next.js ([aeeeb57](https://github.com/awran5/react-simple-star-rating/commit/aeeeb577b87fb0b5d0ac8e8dfa2a9ceb64506f92)), closes [#28](https://github.com/awran5/react-simple-star-rating/issues/28)
+- window is undefined" and "navigator is undefined" when using in Next.js ([abb3c5b](https://github.com/awran5/react-simple-star-rating/commit/abb3c5bcf566bee4ec07dfdab350fac93182b43b)), closes [#26](https://github.com/awran5/react-simple-star-rating/issues/26)
 
 ### [5.1.2](https://github.com/awran5/react-simple-star-rating/compare/v5.1.1...v5.1.2) (2022-10-07)
 
