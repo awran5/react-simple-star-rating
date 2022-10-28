@@ -138,9 +138,15 @@ export function Rating({
   const [{ ratingValue, hoverValue, hoverIndex, valueIndex }, dispatch] = useReducer(reducer, {
     hoverIndex: 0,
     valueIndex: 0,
-    ratingValue: 0,
+    ratingValue: initialValue,
     hoverValue: null
   })
+
+  console.log(ratingValue, hoverValue, hoverIndex, valueIndex, initialValue)
+
+  useEffect(() => {
+    if (initialValue) dispatch({ type: 'MouseClick', payload: 0 })
+  }, [initialValue])
 
   const totalIcons = useMemo(() => (allowFraction ? iconsCount * 2 : iconsCount), [allowFraction, iconsCount])
 
@@ -237,15 +243,6 @@ export function Rating({
     }
   }, [tooltipArray.length, totalIcons])
 
-  // const handleTooltip = useCallback(
-  //   (value: number) => {
-  //     return tooltipArray.length > 0
-  //       ? tooltipArray[hoverIndex || valueIndex || localRatingIndex]
-  //       : renderValue(value) || 0
-  //   },
-  //   [tooltipArray, hoverIndex, valueIndex, localRatingIndex, renderValue]
-  // )
-
   const ratingArray = useCallback(
     (array: string[]) => {
       return (
@@ -339,15 +336,6 @@ export function Rating({
             ...tooltipStyle
           }}
         >
-          {/* {tooltipArray.length > 0
-            ? (hoverValue && tooltipArray[hoverIndex]) ||
-              (ratingValue && tooltipArray[valueIndex]) ||
-              (initialValue && tooltipArray[localRatingIndex])
-            : (hoverValue && renderValue(hoverValue)) ||
-              (ratingValue && renderValue(ratingValue)) ||
-              renderValue(localRating) ||
-              tooltipDefaultText} */}
-
           {(tooltipArray.length > 0 ? ratingArray(tooltipArray) : ratingRenderValues) || tooltipDefaultText}
         </span>
       )}
