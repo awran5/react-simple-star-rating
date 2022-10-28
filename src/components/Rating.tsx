@@ -142,8 +142,6 @@ export function Rating({
     hoverValue: null
   })
 
-  console.log(ratingValue, hoverValue, hoverIndex, valueIndex, initialValue)
-
   useEffect(() => {
     if (initialValue) dispatch({ type: 'MouseClick', payload: 0 })
   }, [initialValue])

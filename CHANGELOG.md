@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-- fix: reset reating not working properly [#34](https://github.com/awran5/react-simple-star-rating/issues/31)
+- fix: reset rating value not working properly [#34](https://github.com/awran5/react-simple-star-rating/issues/31)
 
 ### [5.1.3](https://github.com/awran5/react-simple-star-rating/compare/v5.1.2...v5.1.3) (2022-10-11)
 
