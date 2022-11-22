@@ -165,9 +165,10 @@ export function Rating({
     initialValue
   ])
 
-  const renderValue = useCallback((value: number) => (iconsCount % 2 !== 0 ? value / 2 / 10 : value / iconsCount), [
-    iconsCount
-  ])
+  const renderValue = useCallback(
+    (value: number) => (iconsCount % 2 !== 0 ? value / 2 / 10 : (value * iconsCount) / 100),
+    [iconsCount]
+  )
 
   const handlePointerMove = (event: PointerEvent<HTMLSpanElement>) => {
     const { clientX, currentTarget } = event
