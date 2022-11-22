@@ -67,6 +67,8 @@ export interface RatingProps extends StarIconProps {
   /** ٌُEmpty icons `span` className */
   emptyClassName?: string
 
+  /** Enable / Disable HTML`title` Tag */
+  allowTitleTag?: boolean
   /** Show a tooltip with live values */
   showTooltip?: boolean
   /** Initial tooltip text if there is no rating value */
@@ -123,6 +125,7 @@ export function Rating({
   emptyStyle,
   emptyClassName = 'empty-icons',
 
+  allowTitleTag = true,
   showTooltip = false,
   tooltipDefaultText = 'Your Rate',
   tooltipArray = [],
@@ -302,14 +305,11 @@ export function Rating({
           style={{
             [rtl ? 'right' : 'left']: 0,
             color: ratingArray(fillColorArray) || fillColor,
-
             transition: transition ? 'width .2s ease, color .2s ease' : '',
             width: `${valuePercentage}%`,
             ...fillStyle
           }}
-          title={`${
-            (hoverValue && renderValue(hoverValue)) || renderValue(localRating)
-          } ${titleSeparator} ${iconsCount}`}
+          title={allowTitleTag ? `${ratingRenderValues} ${titleSeparator} ${iconsCount}` : undefined}
         >
           {[...Array(iconsCount)].map((_, index) => (
             <Fragment key={index}>
