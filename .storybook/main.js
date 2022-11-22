@@ -4,6 +4,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    '@storybook/preset-create-react-app',
     {
       name: '@storybook/addon-docs',
       options: { transcludeMarkdown: true }
@@ -11,6 +12,7 @@ module.exports = {
   ],
   framework: '@storybook/react',
   core: {
-    builder: '@storybook/builder-webpack5'
+    builder: '@storybook/builder-webpack5',
+    disableTelemetry: true
   }
 }
