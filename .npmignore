@@ -1,6 +1,7 @@
 src
 example
 .storybook
+.vercel
 .eslintignore
 .eslintrc.js
 .prettierrc
