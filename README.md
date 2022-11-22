@@ -121,7 +121,8 @@ export function MyComponent() {
 | `customIcons`        | array of object  | Optional | Add a group of icons                                      |            `[]`            |
 | `allowHover`         | boolean          | Optional | Enable / Disable hover effect                             |           `true`           |
 | `disableFillHover`   | boolean          | Optional | Enable / Disable hover effect on filled stars             |          `false`           |
-| `showTooltip`        | string           | Optional | Show a tooltip with live values                           |          `false`           |
+| `allowTitleTag`      | boolean          | Optional | Enable / Disable HTML`title` Tag                          |           `true`           |
+| `showTooltip`        | boolean          | Optional | Show a tooltip with live values                           |          `false`           |
 | `tooltipDefaultText` | string           | Optional | Initial tooltip text if no rating value                   |        `Your Rate`         |
 | `tooltipArray`       | array            | Optional | Array of strings to show inside tooltip                   |            `[]`            |
 | `tooltipClassName`   | string           | Optional | Tooltip CSS class                                         |      `rating-tooltip`      |
