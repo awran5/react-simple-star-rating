@@ -80,7 +80,7 @@ WithTooltip.args = {
 export const CustomTooltip = Template.bind({})
 CustomTooltip.args = {
   showTooltip: true,
-  tooltipArray: ['Terrible', 'Bad', 'Average', 'Great', 'Prefect'],
+  tooltipArray: ['Terrible', 'Bad', 'Average', 'Great', 'Perfect'],
   onPointerEnter: undefined,
   onPointerLeave: undefined,
   onPointerMove: undefined
