@@ -221,7 +221,7 @@ export function Rating({
   }
 
   const handlePointerLeave = (event: PointerEvent<HTMLSpanElement>) => {
-    if (isTouchDevice()) handleClick()
+    if (isTouchDevice() && allowHover) handleClick()
 
     dispatch({ type: 'PointerLeave' })
     if (onPointerLeave) onPointerLeave(event)
