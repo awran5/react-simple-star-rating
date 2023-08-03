@@ -208,7 +208,7 @@ export function Rating({
   const handlePointerEnter = (event: PointerEvent<HTMLSpanElement>) => {
     if (onPointerEnter) onPointerEnter(event)
     // Enable only on touch devices
-    if (!isTouchDevice()) return
+    if (!isTouchDevice() || event.pointerType !== 'touch') return
 
     handlePointerMove(event)
   }
@@ -221,7 +221,7 @@ export function Rating({
   }
 
   const handlePointerLeave = (event: PointerEvent<HTMLSpanElement>) => {
-    if (isTouchDevice()) handleClick()
+    if (isTouchDevice() && event.pointerType === 'touch') handleClick()
 
     dispatch({ type: 'PointerLeave' })
     if (onPointerLeave) onPointerLeave(event)
